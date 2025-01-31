@@ -144,4 +144,9 @@ return [
     'Vendor Deleted Successfully' => 'Vendor Deleted Successfully',
     'Edit Vendor' => 'Edit Vendor',
     'Status of Account' => 'Status of Account',
+    'View Account' => 'View Account',
+    'My Account' => 'My Account',
+    'Account' => 'Account',
+    'Home' => 'Home',
+    'Profile Edit Successfully' => 'Profile Edit Successfully',
 ];

@@ -43,9 +43,19 @@ Route::group(['middleware' => 'WebLang'], function () {
         });
     });
     Route::group(['prefix' => 'vendor', 'as' => 'vendor.', 'middleware' => 'checkVendor'], function () {
-        Route::get('/', [VendorHomeController::class, 'index'])->name('index');
+        Route::get('/', [VendorHomeController::class, 'home'])->name('home');
         Route::get('/pending', [VendorHomeController::class, 'pending'])->name('pending');
         Route::get('/rejected', [VendorHomeController::class, 'rejected'])->name('rejected');
+
+        Route::group(['prefix' => 'account'], function () {
+            Route::get('/', [VendorHomeController::class, 'account'])->name('account');
+            Route::post('/update', [VendorHomeController::class, 'accountSotre'])->name('accountSotre');
+        });
+
+        Route::group(['prefix' => 'profile'], function () {
+            Route::get('/', [VendorHomeController::class, 'profile'])->name('profile');
+            Route::post('/update', [VendorHomeController::class, 'profileSotre'])->name('profileSotre');
+        });
     });
     Route::get('/', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'loginStore'])->name('loginStore');

@@ -25,7 +25,7 @@
                                         <th>{{ __('message.Phone') }}</th>
                                         <th>{{ __('message.Status') }}</th>
                                         {{-- <th>{{ __('message.Image') }}</th> --}}
-                                        {{-- <th style="width: 10%">{{ __('message.Action') }}</th> --}}
+                                        <th style="width: 10%">{{ __('message.Action') }}</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
@@ -35,7 +35,7 @@
                                         <th>{{ __('message.Phone') }}</th>
                                         <th>{{ __('message.Status') }}</th>
                                         {{-- <th>{{ __('message.Image') }}</th> --}}
-                                        {{-- <th style="width: 10%">{{ __('message.Action') }}</th> --}}
+                                        <th style="width: 10%">{{ __('message.Action') }}</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
@@ -46,6 +46,18 @@
                                             <td>{{ Str::limit($user->email, 100) }}</td>
                                             <td>{{ Str::limit($user->phone, 100) }}</td>
                                             <td>{{ Str::limit($user->status, 100) }}</td>
+                                            @if($user->id != 1)
+                                            <td>
+                                                <form action="{{ route('admin.admins.destroy', $user->id) }}" method="POST" style="display:inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger"
+                                                        data-original-title="Remove">
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                            @endif
                                             {{-- <td><img src="{{ asset($user->image) }}" alt="{{ $user->name }}" width="70px"
                                                     height="70px" style="border-radius: 5px;"></td> --}}
                                         </tr>

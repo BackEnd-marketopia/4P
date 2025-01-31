@@ -45,7 +45,13 @@
                                             <td>{{ Str::limit($user->name, 100) }}</td>
                                             <td>{{ Str::limit($user->email, 100) }}</td>
                                             <td>{{ Str::limit($user->phone, 100) }}</td>
-                                            <td>{{ Str::limit($user->vendor->status, 100) }}</td>
+                                            @if($user->vendor->status == 'accepted')
+                                                <td>{{ Str::limit(__('message.Accepted'), 100) }}</td>
+                                            @elseif($user->vendor->status == 'pending')
+                                                <td>{{ Str::limit(__('message.Pending'), 100) }}</td>
+                                            @else
+                                                <td>{{ Str::limit(__('message.Rejected'), 100) }}</td>
+                                            @endif
                                             {{-- <td><img src="{{ asset($user->image) }}" alt="{{ $user->name }}" width="70px"
                                                     height="70px" style="border-radius: 5px;"></td> --}}
                                             <td>

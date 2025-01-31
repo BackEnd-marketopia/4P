@@ -60,13 +60,13 @@
                                     <div class="u-text">
                                         <h4>{{ auth('web')->user()->name }}</h4>
                                         <p class="text-muted">{{ auth('web')->user()->email }}</p>
-                                        <a href="{{ route('admin.profileMe') }}" class="btn btn-xs btn-secondary btn-sm">{{ __('message.View Profile') }}</a>
+                                        <a href="{{ route('vendor.account') }}" class="btn btn-xs btn-secondary btn-sm">{{ __('message.View Account') }}</a>
                                     </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('admin.profileMe') }}">{{ __('message.My Profile') }}</a>
+                                <a class="dropdown-item" href="{{ route('vendor.account') }}">{{ __('message.My Account') }}</a>
                                 <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     {{ __('message.Logout') }}
                                 </a>

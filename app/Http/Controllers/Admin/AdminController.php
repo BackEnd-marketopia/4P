@@ -80,6 +80,10 @@ class AdminController extends Controller
     public function destroy(string $id)
     {
         $user = User::findOrFail($id);
+
+        if ($user->id == 1)
+            abort(403);
+
         $user->delete();
         return redirect()->route('admin.admins.index')->with('success', __('message.Admin Deleted Successfully'));
     }

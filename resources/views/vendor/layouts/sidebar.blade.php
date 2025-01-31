@@ -23,12 +23,18 @@
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
             <ul class="nav nav-secondary">
-                <li class="nav-item {{ Route::currentRouteName() == 'admin.index' ? 'active' : '' }}">
-                    <a href="{{ route('admin.index') }}">
+                <li class="nav-item {{ Route::currentRouteName() == 'vendor.home' ? 'active' : '' }}">
+                    <a href="{{ route('vendor.home') }}">
                         <i class="fas fa-home"></i>
-                        <p>{{ __('message.Dashboard') }}</p>
+                        <p>{{ __('message.Home') }}</p>
                     </a>
                 </li>  
+                <li class="nav-item {{ Route::currentRouteName() == 'vendor.profile' ? 'active' : '' }}">
+                    <a href="{{ route('vendor.profile') }}">
+                        <i class="fas fa-user-tie"></i>
+                        <p>{{ __('message.My Profile') }}</p>
+                    </a>
+                </li>
             {{-- <li class="nav-item {{ Route::currentRouteName() == 'admin.categories.index' || Route::currentRouteName() == 'admin.categories.create' ? 'active' : '' }}">
                 <a data-bs-toggle="collapse" href="#Categories" class="collapsed" aria-expanded="false">
                     <i class="fas fa-tags"></i>

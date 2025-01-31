@@ -39,7 +39,7 @@ class AuthController extends Controller
         if ($user->user_type == 'admin')
             return redirect()->route('admin.index');
         else
-            return redirect()->route('vendor.index');
+            return redirect()->route('vendor.home');
     }
     public function register()
     {

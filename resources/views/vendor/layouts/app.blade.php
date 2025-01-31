@@ -9,6 +9,8 @@
     <!-- RTL Support -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-rtl.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/custom-rtl.css') }}" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" defer></script>
     <!-- Fonts and icons -->
     <script src="{{ asset('assets/js/plugin/webfont/webfont.min.js') }}"></script>
     <script>
@@ -39,10 +41,10 @@
 </head>
 <body>
     <div class="wrapper">
-        @include('admin.layouts.sidebar')
+        @include('vendor.layouts.sidebar')
 
         <div class="main-panel">
-            @include('admin.layouts.header')
+            @include('vendor.layouts.header')
             @if(session()->has('success'))
                 <br><br><br><br>
                     <div class="alert alert-success">
@@ -56,7 +58,7 @@
                 </div>
             @endif
             @yield('content')
-            @include('admin.layouts.footer')
+            @include('vendor.layouts.footer')
         </div>
     </div>
 </body>
@@ -133,6 +135,16 @@
                 info: false,
             });
         });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#city_ids').select2({
+            placeholder: "{{ __('message.Cities') }}",
+            allowClear: true,
+            tags: true,
+            closeOnSelect: false
+        });
+    });
 </script>
 </body>
 

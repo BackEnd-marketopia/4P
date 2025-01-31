@@ -144,4 +144,9 @@ return [
     'Vendor Deleted Successfully' => 'تم حذف العميل بنجاح',
     'Edit Vendor' => 'تعديل العميل',
     'Status of Account' => 'حالة الحساب',
+    'View Account' => 'عرض الحساب',
+    'My Account' => 'حسابي',
+    'Account' => 'الحساب',
+    'Home' => 'الرئيسية',
+    'Profile Edit Successfully' => 'تم تعديل الملف الشخصي بنجاح',
 ];
