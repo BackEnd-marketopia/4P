@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\HomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\ConfigController;
+use App\Http\Controllers\Api\HomeController as ApiHomeController;
 
 Route::group(['middleware' => 'lang'], function () {
     Route::group(['prefix' => 'auth'], function () {
@@ -15,4 +17,7 @@ Route::group(['middleware' => 'lang'], function () {
     });
     Route::get('/config', [ConfigController::class, 'config'])->name('config');
     Route::get('/home', [ConfigController::class, 'homePage'])->name('homePage');
+    Route::get('/vendors/{category_id}', [ApiHomeController::class, 'vendorsByCategoryId'])->name('vendor');
+    Route::get('/vendor/{id}', [ApiHomeController::class, 'vendorDetails'])->name('vendorDetails');
+    Route::get('/search', [ApiHomeController::class, 'search'])->name('search');
 });

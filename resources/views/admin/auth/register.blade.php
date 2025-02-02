@@ -143,6 +143,17 @@
                                     </span>
                                 @endif
                             </div>
+                            <div class="form-group{{ $errors->has('name_of_brand') ? ' has-danger' : '' }} mb-3 col-md-12">
+                                <div class="input-group input-group-alternative">
+                                    <input class="form-control{{ $errors->has('name_of_brand') ? ' is-invalid' : '' }}"
+                                        placeholder="{{ __('message.Name Of Brand') }}" type="text" name="name_of_brand" value="{{ old('name_of_brand') }}" required autofocus>
+                                </div>
+                                @if ($errors->has('name_of_brand'))
+                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                        <strong>{{ $errors->first('name_of_brand') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                             <div class="form-group{{ $errors->has('logo') ? ' has-danger' : '' }} mb-3 col-md-6">
                                 <div class="input-group input-group-alternative">
                                     <label for="image" class="input-group">{{ __('message.Logo') }}</label>

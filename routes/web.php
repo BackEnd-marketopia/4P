@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\FeedController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VendorController;
+use App\Http\Controllers\Vendor\DiscountController;
 use App\Http\Controllers\Vendor\HomeController as VendorHomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,9 @@ Route::group(['middleware' => 'WebLang'], function () {
         Route::get('/', [VendorHomeController::class, 'home'])->name('home');
         Route::get('/pending', [VendorHomeController::class, 'pending'])->name('pending');
         Route::get('/rejected', [VendorHomeController::class, 'rejected'])->name('rejected');
+        Route::resources([
+            'discounts' => DiscountController::class,
+        ]);
 
         Route::group(['prefix' => 'account'], function () {
             Route::get('/', [VendorHomeController::class, 'account'])->name('account');

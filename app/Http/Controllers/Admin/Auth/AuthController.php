@@ -71,6 +71,7 @@ class AuthController extends Controller
         $cities = json_encode($request->city_ids);
 
         Vendor::create([
+            'name' => $request->name_of_brand,
             'logo' => $logo ?? null,
             'cover' => $cover ?? null,
             'description' => $request->description,

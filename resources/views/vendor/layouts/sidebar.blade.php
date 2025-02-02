@@ -35,26 +35,26 @@
                         <p>{{ __('message.My Profile') }}</p>
                     </a>
                 </li>
-            {{-- <li class="nav-item {{ Route::currentRouteName() == 'admin.categories.index' || Route::currentRouteName() == 'admin.categories.create' ? 'active' : '' }}">
-                <a data-bs-toggle="collapse" href="#Categories" class="collapsed" aria-expanded="false">
+            <li class="nav-item {{ Route::currentRouteName() == 'vendor.discounts.index' || Route::currentRouteName() == 'vendor.discounts.create' ? 'active' : '' }}">
+                <a data-bs-toggle="collapse" href="#Discount" class="collapsed" aria-expanded="false">
                     <i class="fas fa-tags"></i>
-                    <p>{{ __('message.Categories') }}</p>
+                    <p>{{ __('message.Discount') }}</p>
                     <span class="caret"></span>
                 </a>
-                <div class="collapse" id="Categories">
+                <div class="collapse" id="Discount">
                     <ul class="nav nav-collapse">
                         <li>
-                            <a href="{{ route('admin.categories.create') }}">
+                            <a href="{{ route('vendor.discounts.create') }}">
                                 <span class="sub-item">{{ __('message.Add') }}</span>
                             </a>
-                            <a href="{{ route('admin.categories.index') }}">
+                            <a href="{{ route('vendor.discounts.index') }}">
                                 <span class="sub-item">{{ __('message.List') }}</span>
                             </a>
                         </li>
                     </ul>
                 </div>
             </li>
-            <li class="nav-item {{ Route::currentRouteName() == 'admin.banners.index' || Route::currentRouteName() == 'admin.banners.create' ? 'active' : '' }}">
+        {{--<li class="nav-item {{ Route::currentRouteName() == 'admin.banners.index' || Route::currentRouteName() == 'admin.banners.create' ? 'active' : '' }}">
                 <a data-bs-toggle="collapse" href="#Banners" class="collapsed" aria-expanded="false">
                     <i class="fas fa-image"></i>
                     <p>{{ __('message.Banners') }}</p>

@@ -97,14 +97,14 @@
                 <div class="collapse" id="user_types">
                     <ul class="nav nav-collapse">
                         <li>
-                            <a href="{{ route('admin.users.index') }}">
-                                <span class="sub-item">{{ __('message.Users') }}</span>
+                            <a href="{{ route('admin.admins.index') }}">
+                                <span class="sub-item">{{ __('message.Admins') }}</span>
                             </a>
                             <a href="{{ route('admin.vendors.index') }}">
                                 <span class="sub-item">{{ __('message.Vendos') }}</span>
                             </a>
-                            <a href="{{ route('admin.admins.index') }}">
-                                <span class="sub-item">{{ __('message.Admins') }}</span>
+                            <a href="{{ route('admin.users.index') }}">
+                                <span class="sub-item">{{ __('message.Users') }}</span>
                             </a>
                         </li>
                     </ul>

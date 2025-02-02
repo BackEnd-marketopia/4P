@@ -16,7 +16,7 @@ class HomeController extends Controller
 {
     public function home()
     {
-        $vendor = Vendor::where('user_id', auth('web')->id())->first();
+        $vendor = Vendor::with(['discounts'])->where('user_id', auth('web')->id())->first();
         return view('vendor.home', compact('vendor'));
     }
 
@@ -35,7 +35,7 @@ class HomeController extends Controller
         return view('vendor.account');
     }
 
-    public function accountSotre(UpdatePofileRequest $request)
+    public function accountSotre(UpdateProfileRequest $request)
     {
         $user = auth('web')->user();
         $image = $request->image ? $request->image : $user->image;

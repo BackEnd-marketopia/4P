@@ -28,6 +28,7 @@ class UpdateVendorRequest extends FormRequest
             'phone'    => 'required | digits:11 | regex:/^01\d{9}$/ | unique:users,phone,' . $id,
             'password' => 'nullable | min:8 | regex:/[A-Za-z]/ | regex:/[0-9]/ | confirmed',
             'image'    => 'nullable',
+            'name_of_brand' => 'required | max:255',
             'logo' => 'nullable',
             'cover' => 'nullable',
             'description' => 'required',

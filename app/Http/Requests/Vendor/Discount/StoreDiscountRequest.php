@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Vendor\Profile;
+namespace App\Http\Requests\Vendor\Discount;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateProfileRequest extends FormRequest
+class StoreDiscountRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,17 +22,10 @@ class UpdateProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name_of_brand' => 'required | max:255',
-            'logo' => 'nullable',
-            'cover' => 'nullable',
+            'title' => 'required | max:255',
             'description' => 'required',
-            'whatsapp' => 'nullable',
-            'facebook' => 'nullable',
-            'instagram' => 'nullable',
-            'address' => 'required',
-            'google_map_link' => 'nullable',
-            'city_ids' => 'required',
-            'category_id' => 'required',
+            'start_date' => 'required | date',
+            'end_date' => 'required | date',
         ];
     }
 }

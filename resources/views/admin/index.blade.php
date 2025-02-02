@@ -11,7 +11,7 @@
                 <h6 class="op-7 mb-2">4P</h6>
               </div>
               <div class="ms-md-auto py-2 py-md-0">
-                <a href="#" class="btn btn-secondary btn-round">{{ __('message.Add Vendor') }}</a>
+                <a href="{{ route('admin.vendors.create') }}" class="btn btn-secondary btn-round">{{ __('message.Add Vendor') }}</a>
               </div>
             </div>
             <div class="row">

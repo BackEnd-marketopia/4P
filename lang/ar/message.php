@@ -149,4 +149,15 @@ return [
     'Account' => 'الحساب',
     'Home' => 'الرئيسية',
     'Profile Edit Successfully' => 'تم تعديل الملف الشخصي بنجاح',
+    'Name Of Brand' => 'اسم العلامة التجارية',
+    'Discount' => 'خصومات',
+    'Start Date' => 'تاريخ البدء',
+    'End Date' => 'تاريخ الانتهاء',
+    'Discount Added Successfully' => 'تم إضافة الخصم بنجاح',
+    'Discount Edit Successfully' => 'تم تعديل الخصم بنجاح',
+    'Discount Deleted Successfully' => 'تم حذف الخصم بنجاح',
+    'Add Discount' => 'اضافة خصم',
+    'Discounts' => 'الخصومات',
+    'Edit Discount' => 'تعديل الخصم',
+
 ];

@@ -8,6 +8,7 @@ class Vendor extends Model
 {
     protected $fillable =
     [
+        'name',
         'logo',
         'cover',
         'description',
@@ -25,5 +26,10 @@ class Vendor extends Model
     public function user()
     {
         return $this->hasOne(User::class);
+    }
+
+    public function discounts()
+    {
+        return $this->hasMany(Discount::class);
     }
 }

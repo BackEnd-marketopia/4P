@@ -99,6 +99,18 @@
                                                 </span>
                                             @endif
                                         </div>
+                                        <div class="form-group{{ $errors->has('name_of_brand') ? ' has-danger' : '' }} mb-3 col-md-12">
+                                            <div class="input-group input-group-alternative">
+                                                <input class="form-control{{ $errors->has('name_of_brand') ? ' is-invalid' : '' }}"
+                                                    placeholder="{{ __('message.Name Of Brand') }}" type="text" name="name_of_brand"
+                                                    value="{{ $user->vendor->name }}" required>
+                                            </div>
+                                            @if ($errors->has('name_of_brand'))
+                                                <span class="invalid-feedback" style="display: block;" role="alert">
+                                                    <strong>{{ $errors->first('name_of_brand') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
                                         <div class="col-md-6">
                                             <div class="form-group {{ $errors->has('cover') ? ' has-danger' : '' }}">
                                                 <label for="cover">{{ __('message.Cover') }}</label>
@@ -164,7 +176,7 @@
                                                 class="form-control{{ $errors->has('city_ids') ? ' is-invalid' : '' }}"
                                                 name="city_ids[]" id="city_ids" multiple required>
                                                 @php
-                                                    $cities_id = json_decode($user->vendor->citys_id, true);
+$cities_id = json_decode($user->vendor->citys_id, true);
 
                                                 @endphp
                                                 @foreach($cities as $city)
