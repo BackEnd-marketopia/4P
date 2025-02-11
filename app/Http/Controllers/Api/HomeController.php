@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\Helpers;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\FormPlayer\FormPlayerRequest;
 use App\Models\Discount;
+use App\Models\PlayerForm;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -39,6 +42,36 @@ class HomeController extends Controller
         }
     }
 
+    public function playerForm(FormPlayerRequest $request)
+    {
+        $images = null;
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image)
+                $images[] = Helpers::addImage($image, 'player_form');
+        }
+
+        $user = auth('api')->user();
+        if ($user->playerForm)
+            return Response::api(__('message.You have already submitted a form'), 400, false, 400);
+
+        $player_form = PlayerForm::create([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'age' => $request->age,
+            'name_of_old_club' => $request->name_of_old_club ?? null,
+            'name_of_current_club' => $request->name_of_current_club ?? null,
+            'job_of_parent' => $request->job_of_parent ?? null,
+            'long_life_desises' => $request->long_life_desises ?? null,
+            'injuries' => $request->injuries ?? null,
+            'images' => !empty($images) ? json_encode($images) : null,
+            'city_name' => $request->city_name,
+            'user_id' => auth('api')->id(),
+        ]);
+        $player_form->images = json_decode($player_form->images);
+        return Response::api(__('message.Success'), 200, true, null, ['player_form' => $player_form]);
+    }
+
+
     public function vendorsByCategoryId($category_id)
     {
         $user = auth('api')->user();
@@ -56,7 +89,7 @@ class HomeController extends Controller
 
     public function vendorDetails($id)
     {
-        $vendor = Vendor::where('id', $id)->first();
+        $vendor = Vendor::findOrFail($id);
         $discounts = $vendor->discounts()->where('start_date', '<=', now())->where('end_date', '>=', now())->get();
         return Response::api(__('message.Success'), 200, true, null, ['vendor' => $vendor, 'discounts' => $discounts]);
     }

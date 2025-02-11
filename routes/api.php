@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\ConfigController;
+use App\Http\Controllers\Api\DiscountController;
 use App\Http\Controllers\Api\HomeController as ApiHomeController;
 
 Route::group(['middleware' => 'lang'], function () {
@@ -20,4 +21,9 @@ Route::group(['middleware' => 'lang'], function () {
     Route::get('/vendors/{category_id}', [ApiHomeController::class, 'vendorsByCategoryId'])->name('vendor');
     Route::get('/vendor/{id}', [ApiHomeController::class, 'vendorDetails'])->name('vendorDetails');
     Route::get('/search', [ApiHomeController::class, 'search'])->name('search');
+    Route::get('/discount/{id}', [DiscountController::class, 'index'])->name('discount');
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::post('/player_form', [ApiHomeController::class, 'playerForm'])->name('playerForm');
+        Route::post('/discountChecked/{discountId}', [DiscountController::class, 'discountChecked'])->name('discountChecked');
+    });
 });

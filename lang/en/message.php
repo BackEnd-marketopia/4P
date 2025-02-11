@@ -159,4 +159,8 @@ return [
     'Add Discount' => 'Add Discount',
     'Discounts' => 'Discounts',
     'Edit Discount' => 'Edit Discount',
+    'You have already submitted a form' => 'You have already submitted a form',
+    'Already Checked' => 'Already Checked',
+    'You Are Not subscribed' => 'You Are Not subscribed',
+    'Login First' => 'Login First',
 ];

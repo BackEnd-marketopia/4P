@@ -159,5 +159,9 @@ return [
     'Add Discount' => 'اضافة خصم',
     'Discounts' => 'الخصومات',
     'Edit Discount' => 'تعديل الخصم',
+    'You have already submitted a form' => 'لقد قدمت بالفعل نموذجًا',
+    'Already Checked' => 'تم التحقق بالفعل',
+    'You Are Not subscribed' => 'أنت غير مشترك',
+    'Login First' => 'سجل دخول اولا',
 
 ];

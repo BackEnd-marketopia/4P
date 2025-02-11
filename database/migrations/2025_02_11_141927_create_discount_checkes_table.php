@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('discounts', function (Blueprint $table) {
+        Schema::create('discount_checks', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description');
-            $table->date('start_date')->nullable();
-            $table->date('end_date')->nullable();
-            $table->integer('viwe_count')->default(0);
-            $table->foreignId('vendor_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('discount_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('discounts');
+        Schema::dropIfExists('discount_checkes');
     }
 };

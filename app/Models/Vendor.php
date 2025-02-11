@@ -32,4 +32,9 @@ class Vendor extends Model
     {
         return $this->hasMany(Discount::class);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
