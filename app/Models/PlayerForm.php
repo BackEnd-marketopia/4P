@@ -18,6 +18,7 @@ class PlayerForm extends Model
         'images',
         'city_name',
         'user_id',
+        'is_deleted',
     ];
 
     public function user()

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Vendor\Discount;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreDiscountRequest extends FormRequest
+class UpdateDiscountRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class StoreDiscountRequest extends FormRequest
         return [
             'title' => 'required | max:255',
             'description' => 'required',
-            'image' => 'required',
+            'image' => 'nullable',
             'start_date' => 'required | date',
             'end_date' => 'required | date',
         ];

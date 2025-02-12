@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Vendor;
 
+use App\Helpers\Helpers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Vendor\Discount\StoreDiscountRequest;
+use App\Http\Requests\Vendor\Discount\UpdateDiscountRequest;
 use App\Models\Discount;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class DiscountController extends Controller
 {
@@ -31,9 +34,11 @@ class DiscountController extends Controller
      */
     public function store(StoreDiscountRequest $request)
     {
+        $image = Helpers::addImage($request->image, 'discount');
         Discount::create([
             'title' => $request->title,
             'description' => $request->description,
+            'image' => $image,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'vendor_id' => auth('web')->user()->vendor->id,
@@ -62,13 +67,21 @@ class DiscountController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreDiscountRequest $request, string $id)
+    public function update(UpdateDiscountRequest $request, string $id)
     {
         $discount = Discount::where('id', $id)
             ->where('vendor_id', auth('web')->user()->vendor->id)->first();
+
+        if ($request->image) {
+            if (File::exists($discount->image)) {
+                File::delete($discount->image);
+            }
+            $image = Helpers::addImage($request->image, 'discount');
+        }
         $discount->update([
             'title' => $request->title,
             'description' => $request->description,
+            'image' => $image ?? $discount->image,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'vendor_id' => auth('web')->user()->vendor->id,

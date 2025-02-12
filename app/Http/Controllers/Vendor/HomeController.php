@@ -72,6 +72,7 @@ class HomeController extends Controller
         $cities = json_encode($request->city_ids);
 
         $user->vendor->update([
+            'name' => $request->name_of_brand,
             'logo' => $logo,
             'cover' => $cover,
             'description' => $request->description,

@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\ConfigController;
 use App\Http\Controllers\Admin\FeedController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\PlayerFormController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VendorController;
 use App\Http\Controllers\Vendor\DiscountController;
@@ -30,6 +31,7 @@ Route::group(['middleware' => 'WebLang'], function () {
             Route::post('/update', [HomeController::class, 'profileMeSotre'])->name('profileMeSotre');
         });
         Route::resources([
+            'player_forms' => PlayerFormController::class,
             'cities'     => CityController::class,
             'banners'    => BannerController::class,
             'feeds'      => FeedController::class,

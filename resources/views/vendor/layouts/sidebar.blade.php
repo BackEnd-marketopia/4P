@@ -2,7 +2,7 @@
     <div class="sidebar-logo">
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="white">
-            <a href="{{ route('admin.index') }}" class="logo">
+            <a href="{{ route('vendor.home') }}" class="logo">
                 <img src="{{ asset('assets/img/kaiadmin/app_logo.png') }}" alt="4P" class="navbar-brand" height="50" />
                 <p>4P</p>
             </a>

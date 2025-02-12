@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
+            $table->string('image');
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->integer('viwe_count')->default(0);

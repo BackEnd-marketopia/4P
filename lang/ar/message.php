@@ -163,5 +163,15 @@ return [
     'Already Checked' => 'تم التحقق بالفعل',
     'You Are Not subscribed' => 'أنت غير مشترك',
     'Login First' => 'سجل دخول اولا',
-
+    'Player Forms' => 'استمارة الاعبين',
+    'Age' => 'العمر',
+    'Back to Player Forms List' => 'العودة إلى قائمة استمارات اللاعبين',
+    'Old Club' => 'النادي السابق',
+    'Current Club' => 'النادي الحالي',
+    'Parent Job' => 'وظيفة الوالد',
+    'Long-term Diseases' => 'الأمراض المزمنة',
+    'Injuries' => 'الإصابات',
+    'None' => 'لا شيء',
+    'Player Form' => 'أستمارة لاعب',
+    'Player Form Deleted Successfully' => 'تم حذف استمارة اللاعب بنجاح',
 ];

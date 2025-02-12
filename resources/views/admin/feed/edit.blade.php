@@ -10,7 +10,7 @@
                 <h6 class="op-7 mb-2">4P</h6>
             </div>
         </div>
-        <form action="{{ route('admin.feeds.update', $feed->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.feeds.update', $player_form->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="row">
@@ -25,7 +25,7 @@
                                                 {{ $errors->has('title') ? ' has-danger' : '' }}">
                                                 <label for="title">{{ __('message.Title') }}</label>
                                                 <input type="text" class="form-control" id="title" name="title"
-                                                    value="{{ $feed->title }}" required>
+                                                    value="{{ $player_form->title }}" required>
                                             </div>
                                             @if ($errors->has('title'))
                                                 <span class="invalid-feedback" style="display: block;" role="alert">
@@ -39,7 +39,7 @@
                                                 <label
                                                     for="short_description">{{ __('message.Short Description') }}</label>
                                                 <input type="text" class="form-control" id="short_description"
-                                                    name="short_description" value="{{ $feed->short_description }}" required>
+                                                    name="short_description" value="{{ $player_form->short_description }}" required>
                                             </div>
                                             @if ($errors->has('short_description'))
                                                 <span class="invalid-feedback" style="display: block;" role="alert">
@@ -52,7 +52,7 @@
                                                 {{ $errors->has('description') ? ' has-danger' : '' }}">
                                                 <label for="description">{{ __('message.Description') }}</label>
                                                 <textarea type="text" class="form-control" id="description"
-                                                    name="description" required>{{ $feed->description }}</textarea>
+                                                    name="description" required>{{ $player_form->description }}</textarea>
                                             </div>
                                             @if ($errors->has('description'))
                                                 <span class="invalid-feedback" style="display: block;" role="alert">
@@ -65,7 +65,7 @@
                                                 {{ $errors->has('url') ? ' has-danger' : '' }}">
                                                 <label for="url">{{ __('message.URL') }}</label>
                                                 <input type="text" class="form-control" id="url" name="url"
-                                                value="{{ $feed->url }}">
+                                                value="{{ $player_form->url }}">
                                             </div>
                                             @if ($errors->has('url'))
                                                 <span class="invalid-feedback" style="display: block;" role="alert">

@@ -29,6 +29,12 @@
                         <p>{{ __('message.Dashboard') }}</p>
                     </a>
                 </li>  
+                <li class="nav-item {{ Route::currentRouteName() == 'admin.player_forms.index' ? 'active' : '' }}">
+                    <a href="{{ route('admin.player_forms.index') }}">
+                        <i class="fas fa-file-alt"></i>
+                        <p>{{ __('message.Player Forms') }}</p>
+                    </a>
+                </li>
             <li class="nav-item {{ Route::currentRouteName() == 'admin.categories.index' || Route::currentRouteName() == 'admin.categories.create' ? 'active' : '' }}">
                 <a data-bs-toggle="collapse" href="#Categories" class="collapsed" aria-expanded="false">
                     <i class="fas fa-tags"></i>
