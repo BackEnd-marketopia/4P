@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             // UserTableSeeder::class,
             // ConfigTableSeeder::class,
-            CategoryTableSeeder::class,
+            // CategoryTableSeeder::class,
+            // EducationDepartmentTable::class,
         ]);
     }
 }

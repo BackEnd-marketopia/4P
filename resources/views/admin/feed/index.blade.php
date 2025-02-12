@@ -39,7 +39,7 @@
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    @foreach ($player_forms as $feed)
+                                    @foreach ($feeds as $feed)
 
                                         <tr>
                                             <td>{{ Str::limit($feed->title, 100) }}</td>
@@ -76,8 +76,8 @@
 
                                 </tbody>
                             </table>
-                            {{ $player_forms->links() }}
-                            <p>{{ __('message.Page') }}: {{ $player_forms->currentPage() }} {{ __('message.of') }} {{ $player_forms->lastPage() }}</p>
+                            {{ $feeds->links() }}
+                            <p>{{ __('message.Page') }}: {{ $feeds->currentPage() }} {{ __('message.of') }} {{ $feeds->lastPage() }}</p>
                         </div>
                     </div>
                 </div>

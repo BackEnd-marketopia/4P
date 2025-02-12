@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Helpers\Helpers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\FormPlayer\FormPlayerRequest;
+use App\Models\Category;
 use App\Models\Discount;
+use App\Models\Feed;
 use App\Models\PlayerForm;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
@@ -92,5 +94,22 @@ class HomeController extends Controller
         $vendor = Vendor::findOrFail($id);
         $discounts = $vendor->discounts()->where('start_date', '<=', now())->where('end_date', '>=', now())->get();
         return Response::api(__('message.Success'), 200, true, null, ['vendor' => $vendor, 'discounts' => $discounts]);
+    }
+
+    public function categories()
+    {
+        $categories = Category::select('id', app()->getLocale() == 'ar' ? 'name_arabic as name' : 'name_english as name', 'image', 'is_sport')
+            ->orderBy('sort_order', 'asc')
+            ->get();
+        return Response::api(__('message.Success'), 200, true, null, ['categories' => $categories]);
+    }
+
+    public function feeds()
+    {
+        $feeds = Feed::orderByDesc('created_at')->paginate(20);
+
+        $data = collect($feeds->toArray())->except(['links']);
+
+        return Response::api(__('message.Success'), 200, true, null, ['feeds' => $data]);
     }
 }

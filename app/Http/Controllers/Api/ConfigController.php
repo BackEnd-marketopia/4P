@@ -26,10 +26,13 @@ class ConfigController extends Controller
         $banners = Banner::select('id', app()->getLocale() == 'ar' ? 'name_arabic as name' : 'name_english as name', 'image')
             ->get();
 
-        $feeds = Feed::orderByDesc('created_at')->get();
+        $feeds = Feed::orderByDesc('created_at')
+            ->take(5)
+            ->get();
 
         $categories = Category::select('id', app()->getLocale() == 'ar' ? 'name_arabic as name' : 'name_english as name', 'image', 'is_sport')
             ->orderBy('sort_order', 'asc')
+            ->take(20)
             ->get();
 
         $vendors = Vendor::select('id', 'name', 'description', 'cover', 'category_id')
