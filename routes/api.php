@@ -29,8 +29,11 @@ Route::group(['middleware' => 'lang'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
         Route::post('/player_form', [ApiHomeController::class, 'playerForm'])->name('playerForm');
         Route::post('/discountChecked/{discountId}', [DiscountController::class, 'discountChecked'])->name('discountChecked');
+        Route::get('/attachments/{lessonId}', [EducationController::class, 'attachments'])->name('attachments');
     });
     Route::get('/educationDepartment', [EducationController::class, 'educationDepartment'])->name('educationDepartment');
-    Route::get('/providers/{id}', [EducationController::class, 'providers'])->name('providers');
-    Route::get('/class_rooms/{id}', [EducationController::class, 'classRooms'])->name('class_rooms');
+    Route::get('/providers/{educationDepartmentId}', [EducationController::class, 'providers'])->name('providers');
+    Route::get('/class_rooms/{providerId}', [EducationController::class, 'classRooms'])->name('class_rooms');
+    Route::get('/units/{classRoomId}', [EducationController::class, 'units'])->name('units');
+    Route::get('/lessons/{unitId}', [EducationController::class, 'lessons'])->name('lessons');
 });

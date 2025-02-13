@@ -13,4 +13,9 @@ class ClassRoom extends Model
         'sort_order',
         'provider_id',
     ];
+
+    public function units()
+    {
+        return $this->hasMany(Unit::class);
+    }
 }
