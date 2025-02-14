@@ -73,4 +73,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasOne(PlayerForm::class);
     }
+
+    public function code()
+    {
+        return $this->hasOne(Code::class);
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Vendor;
 
 use App\Helpers\Helpers;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Profile\UpdatePofileRequest;
 use App\Http\Requests\Vendor\Profile\UpdateProfileRequest;
 use App\Models\Category;
 use App\Models\City;
@@ -35,7 +36,7 @@ class HomeController extends Controller
         return view('vendor.account');
     }
 
-    public function accountSotre(UpdateProfileRequest $request)
+    public function accountSotre(UpdatePofileRequest $request)
     {
         $user = auth('web')->user();
         $image = $request->image ? $request->image : $user->image;
