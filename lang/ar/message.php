@@ -174,4 +174,8 @@ return [
     'None' => 'لا شيء',
     'Player Form' => 'أستمارة لاعب',
     'Player Form Deleted Successfully' => 'تم حذف استمارة اللاعب بنجاح',
+    'Register in The Educational Section' => 'التسجيل في القسم التعليمي',
+    'Name Of School in Arabic' => 'اسم المدرسة بالعربية',
+    'Name Of School in English' => 'اسم المدرسة بالإنجليزية',
+    'Educational Department' => 'القسم التعليمي',
 ];

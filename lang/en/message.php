@@ -174,4 +174,8 @@ return [
     'None' => 'None',
     'Player Form' => 'Player Form',
     'Player Form Deleted Successfully' => 'Player Form Deleted Successfully',
+    'Register in The Educational Section' => 'Register in The Educational Section',
+    'Name Of School in Arabic' => 'Name Of School in Arabic',
+    'Name Of School in English' => 'Name Of School in English',
+    'Educational Department' => 'Educational Department',
 ];

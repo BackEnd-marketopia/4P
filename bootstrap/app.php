@@ -22,6 +22,7 @@ return Application::configure(basePath: dirname(__DIR__))
             "checkAdmin"  => App\Http\Middleware\CheckAdmin::class,
             "WebLang"     => App\Http\Middleware\WebLang::class,
             "checkVendor" => App\Http\Middleware\CheckVendor::class,
+            "checkProvider" => App\Http\Middleware\CheckProvider::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

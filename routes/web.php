@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PlayerFormController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VendorController;
+use App\Http\Controllers\Provider\HomeController as ProviderHomeController;
 use App\Http\Controllers\Vendor\DiscountController;
 use App\Http\Controllers\Vendor\HomeController as VendorHomeController;
 use Illuminate\Support\Facades\Route;
@@ -65,7 +66,26 @@ Route::group(['middleware' => 'WebLang'], function () {
     });
     Route::get('/', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'loginStore'])->name('loginStore');
-    Route::get('/register', [AuthController::class, 'register'])->name('register');
-    Route::post('/registerStore', [AuthController::class, 'registerStore'])->name('registerStore');
+    Route::get('/register_vendor', [AuthController::class, 'registerVendor'])->name('register.vendor');
+    Route::post('/registerVendorStore', [AuthController::class, 'registerVendorStore'])->name('registerVendorStore');
+    Route::get('/register/provider', [AuthController::class, 'registerProvider'])->name('register.provider');
+    Route::post('/register/providerStore', [AuthController::class, 'registerProviderStore'])->name('register.providerStore');
+
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::group(['prefix' => 'provider', 'as' => 'provider.', 'middleware' => 'checkProvider'], function () {
+        Route::get('/', [ProviderHomeController::class, 'index'])->name('index');
+        Route::get('/pending', [VendorHomeController::class, 'pending'])->name('pending');
+        Route::get('/rejected', [VendorHomeController::class, 'rejected'])->name('rejected');
+
+        Route::group(['prefix' => 'account'], function () {
+            Route::get('/', [ProviderHomeController::class, 'account'])->name('account');
+            Route::post('/store', [ProviderHomeController::class, 'accountStore'])->name('accountStore');
+        });
+
+        Route::group(['prefix' => 'profile'], function () {
+            Route::get('/', [ProviderHomeController::class, 'profile'])->name('profile');
+            Route::post('/store', [ProviderHomeController::class, 'profileStore'])->name('profileStore');
+        });
+    });
 });

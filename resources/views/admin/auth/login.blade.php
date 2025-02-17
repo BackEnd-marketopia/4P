@@ -25,7 +25,7 @@
             },
         });
     </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
@@ -43,23 +43,25 @@
                 <div class="card bg-white shadow border-0">
                     <div class="card-body px-lg-5 py-lg-5">
                         <li class="nav-item dropdown hidden-caret" style="list-style: none;">
-                            <a class="dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <a class="dropdown-toggle" href="#" id="languageDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ __('message.Language') }}
                             </a>
                             <ul class="dropdown-menu animated fadeIn" aria-labelledby="languageDropdown">
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('setLocale', 'en') }}">{{ __('message.English') }}</a>
+                                    <a class="dropdown-item"
+                                        href="{{ route('setLocale', 'en') }}">{{ __('message.English') }}</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('setLocale', 'ar') }}">{{ __('message.Arabic') }}</a>
+                                    <a class="dropdown-item"
+                                        href="{{ route('setLocale', 'ar') }}">{{ __('message.Arabic') }}</a>
                                 </li>
                             </ul>
                         </li>
 
                         <div class="text-center text-muted mb-4">
-                            <img src="{{ asset('assets/img/kaiadmin/app_logo.png') }}"
-                                alt="Logo" class="logo" width="100">
+                            <img src="{{ asset('assets/img/kaiadmin/app_logo.png') }}" alt="Logo" class="logo"
+                                width="100">
                             </br>
                             <span style="font-weight: bold; font-size: 2em;">4P</span>
                         </div>
@@ -80,7 +82,8 @@
                             <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                                 <div class="input-group input-group-alternative">
                                     <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                        name="password" placeholder="{{ __('message.Password') }}" type="password" required>
+                                        name="password" placeholder="{{ __('message.Password') }}" type="password"
+                                        required>
                                 </div>
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -89,19 +92,25 @@
                                 @endif
                             </div>
                             <div class="d-flex justify-content-end mt-6">
-                                <a href="#" class="btn btn-link" style="color: #BD3628;">{{ __('message.Forget Password') }}</a>
+                                <a href="#" class="btn btn-link"
+                                    style="color: #BD3628;">{{ __('message.Forget Password') }}</a>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn my-4" style="background-color: #BD3628; color: white;">{{ __('message.Sign in') }}</button>
+                                <button type="submit" class="btn btn my-4"
+                                    style="background-color: #BD3628; color: white;">{{ __('message.Sign in') }}</button>
                             </div>
                         </form>
-                            <div class="text-center mt-3">
-                                <a href="{{ route('register') }}" class="btn btn-link" style="color: #BD3628;">{{ __('message.Register as Vendor') }}</a>
-                            </div>
+                        <div class="text-center mt-3">
+                            <a href="{{ route('register.vendor') }}" class="btn btn-link"
+                                style="color: #BD3628;">{{ __('message.Register as Vendor') }}</a>
+                            <a href="{{ route('register.provider') }}" class="btn btn-link"
+                                style="color: #BD3628;">{{ __('message.Register in The Educational Section') }}</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
+
 </html>

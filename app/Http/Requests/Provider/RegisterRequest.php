@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin\Auth;
+namespace App\Http\Requests\Provider;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,26 +25,16 @@ class RegisterRequest extends FormRequest
             'name'     => 'required | max:255',
             'email'    => 'required | email | unique:users,email',
             'phone'    => 'required | digits:11 | regex:/^01\d{9}$/ | unique:users,phone',
-            'password' => 'required | min:8 | regex:/[A-Za-z]/ | regex:/[0-9]/ | confirmed',
             'image'    => 'nullable',
-            'name_of_brand' => 'required | max:255',
+            'password' => 'required | min:8 | regex:/[A-Za-z]/ | regex:/[0-9]/ | confirmed',
+            'name_of_school_arabic' => 'required | max:255',
+            'name_of_school_english' => 'required | max:255',
             'logo' => 'required',
-            'cover' => 'required',
-            'description' => 'required',
+            'educational_department_id' => 'required | exists:education_departments,id',
+            'address' => 'nullable',
             'whatsapp' => 'nullable',
             'facebook' => 'nullable',
             'instagram' => 'nullable',
-            'address' => 'required',
-            'google_map_link' => 'nullable',
-            'city_ids' => 'required',
-            'category_id' => 'required',
-        ];
-    }
-    public function messages(): array
-    {
-        return [
-            'phone.regex'    => __('message.The phone number must start with 01 and contain exactly 11 digits'),
-            'password.regex' => __('message.The password must contain at least one letter and at least one number'),
         ];
     }
 }
