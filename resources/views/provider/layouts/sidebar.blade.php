@@ -36,39 +36,39 @@
                     </a>
                 </li>
                 <li
-                    class="nav-item {{ Route::currentRouteName() == 'vendor.discounts.index' || Route::currentRouteName() == 'vendor.discounts.create' ? 'active' : '' }}">
-                    <a data-bs-toggle="collapse" href="#Discount" class="collapsed" aria-expanded="false">
-                        <i class="fas fa-tags"></i>
-                        <p>{{ __('message.Discount') }}</p>
+                    class="nav-item {{ Route::currentRouteName() == 'provider.class-rooms.index' || Route::currentRouteName() == 'provider.class-rooms.create' ? 'active' : '' }}">
+                    <a data-bs-toggle="collapse" href="#class-room" class="collapsed" aria-expanded="false">
+                        <i class="fas fa-chalkboard"></i>
+                        <p>{{ __('message.Class Rooms') }}</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="Discount">
+                    <div class="collapse" id="class-room">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="{{ route('vendor.discounts.create') }}">
+                                <a href="{{ route('provider.class-rooms.create') }}">
                                     <span class="sub-item">{{ __('message.Add') }}</span>
                                 </a>
-                                <a href="{{ route('vendor.discounts.index') }}">
+                                <a href="{{ route('provider.class-rooms.index') }}">
                                     <span class="sub-item">{{ __('message.List') }}</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
-                {{--<li
-                    class="nav-item {{ Route::currentRouteName() == 'admin.banners.index' || Route::currentRouteName() == 'admin.banners.create' ? 'active' : '' }}">
-                    <a data-bs-toggle="collapse" href="#Banners" class="collapsed" aria-expanded="false">
-                        <i class="fas fa-image"></i>
-                        <p>{{ __('message.Banners') }}</p>
+                <li
+                    class="nav-item {{ Route::currentRouteName() == 'provider.units.index' || Route::currentRouteName() == 'provider.units.create' ? 'active' : '' }}">
+                    <a data-bs-toggle="collapse" href="#units" class="collapsed" aria-expanded="false">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <p>{{ __('message.Units') }}</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="Banners">
+                    <div class="collapse" id="units">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="{{ route('admin.banners.create') }}">
+                                <a href="{{ route('provider.units.create') }}">
                                     <span class="sub-item">{{ __('message.Add') }}</span>
                                 </a>
-                                <a href="{{ route('admin.banners.index') }}">
+                                <a href="{{ route('provider.units.index') }}">
                                     <span class="sub-item">{{ __('message.List') }}</span>
                                 </a>
                             </li>
@@ -77,19 +77,19 @@
                 </li>
 
                 <li
-                    class="nav-item {{ Route::currentRouteName() == 'admin.feeds.index' || Route::currentRouteName() == 'admin.feeds.create' ? 'active' : '' }}">
-                    <a data-bs-toggle="collapse" href="#Feeds" class="collapsed" aria-expanded="false">
-                        <i class="fas fa-newspaper"></i>
-                        <p>{{ __('message.Feeds') }}</p>
+                    class="nav-item {{ Route::currentRouteName() == 'provider.lessons.index' || Route::currentRouteName() == 'provider.lessons.create' ? 'active' : '' }}">
+                    <a data-bs-toggle="collapse" href="#lessons" class="collapsed" aria-expanded="false">
+                        <i class="fas fa-book"></i>
+                        <p>{{ __('message.Lessons') }}</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="Feeds">
+                    <div class="collapse" id="lessons">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="{{ route('admin.feeds.create') }}">
+                                <a href="{{ route('provider.lessons.create') }}">
                                     <span class="sub-item">{{ __('message.Add') }}</span>
                                 </a>
-                                <a href="{{ route('admin.feeds.index') }}">
+                                <a href="{{ route('provider.lessons.index') }}">
                                     <span class="sub-item">{{ __('message.List') }}</span>
                                 </a>
                             </li>
@@ -97,18 +97,27 @@
                     </div>
                 </li>
 
-                <li class="nav-item {{ Route::currentRouteName() == 'admin.cities.index' ? 'active' : '' }}">
-                    <a href="{{ route('admin.cities.index') }}">
-                        <i class="fas fa-globe"></i>
-                        <p>{{ __('message.Cities') }}</p>
+                <li
+                    class="nav-item {{ Route::currentRouteName() == 'provider.attachments.index' || Route::currentRouteName() == 'provider.attachments.create' ? 'active' : '' }}">
+                    <a data-bs-toggle="collapse" href="#attachments" class="collapsed" aria-expanded="false">
+                        <i class="fas fa-file"></i>
+                        <p>{{ __('message.Attachments') }}</p>
+                        <span class="caret"></span>
                     </a>
+                    <div class="collapse" id="attachments">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{ route('provider.attachments.create') }}">
+                                    <span class="sub-item">{{ __('message.Add') }}</span>
+                                </a>
+                                <a href="{{ route('provider.attachments.index') }}">
+                                    <span class="sub-item">{{ __('message.List') }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
-                <li class="nav-item {{ Route::currentRouteName() == 'admin.config' ? 'active' : '' }}">
-                    <a href="{{ route('admin.config') }}">
-                        <i class="fas fa-cog"></i>
-                        <p>{{ __('message.Configurations') }}</p>
-                    </a>
-                </li> --}}
+
             </ul>
         </div>
     </div>

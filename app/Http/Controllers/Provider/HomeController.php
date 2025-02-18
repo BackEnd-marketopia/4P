@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\Profile\UpdatePofileRequest;
 use App\Http\Requests\Provider\ProfileRequest;
+use App\Models\ClassRoom;
 use App\Models\EducationDepartment;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -16,7 +17,11 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('provider.home');
+        $classRooms = ClassRoom::with(['educationDepartment'])
+            ->where('provider_id', auth('web')->user()->provider->id)
+            ->get();
+
+        return view('provider.home', compact('classRooms'));
     }
 
     public function account()

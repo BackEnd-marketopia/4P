@@ -12,10 +12,16 @@ class ClassRoom extends Model
         'image',
         'sort_order',
         'provider_id',
+        'education_department_id',
     ];
 
     public function units()
     {
         return $this->hasMany(Unit::class);
+    }
+
+    public function educationDepartment()
+    {
+        return $this->belongsTo(EducationDepartment::class);
     }
 }

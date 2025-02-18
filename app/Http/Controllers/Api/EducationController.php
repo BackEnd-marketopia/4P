@@ -48,16 +48,21 @@ class EducationController extends Controller
         return Response::api(__('message.Success'), 200, true, null, ['providers' => $providers]);
     }
 
-    public function classRooms($providerId)
+    public function classRooms(Request $request, $providerId)
     {
+        if (!$request->departmentId)
+            return Response::api(__('message.Error'), 404, true, 404, __('message.Not Found'));
+
         $class_rooms = ClassRoom::select(
             'id',
             app()->getLocale() == 'ar' ? 'name_arabic as name' : 'name_english as name',
             'image',
             'sort_order',
-            'provider_id'
+            'provider_id',
+            'education_department_id'
         )
             ->where('provider_id', $providerId)
+            ->where('education_department_id', $request->departmentId)
             ->orderBy('sort_order')
             ->get();
 

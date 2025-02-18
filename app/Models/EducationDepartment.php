@@ -15,4 +15,9 @@ class EducationDepartment extends Model
     {
         return $this->belongsToMany(Provider::class);
     }
+
+    public function classRooms()
+    {
+        return $this->belongsToMany(ClassRoom::class);
+    }
 }

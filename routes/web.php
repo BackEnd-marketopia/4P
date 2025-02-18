@@ -9,9 +9,14 @@ use App\Http\Controllers\Admin\ConfigController;
 use App\Http\Controllers\Admin\FeedController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PlayerFormController;
+use App\Http\Controllers\Admin\ProviderController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VendorController;
+use App\Http\Controllers\Provider\AttachmentController;
+use App\Http\Controllers\Provider\ClassRoomController;
 use App\Http\Controllers\Provider\HomeController as ProviderHomeController;
+use App\Http\Controllers\Provider\LessonController;
+use App\Http\Controllers\Provider\UnitController;
 use App\Http\Controllers\Vendor\DiscountController;
 use App\Http\Controllers\Vendor\HomeController as VendorHomeController;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +45,7 @@ Route::group(['middleware' => 'WebLang'], function () {
             'users'      => UserController::class,
             'vendors'    => VendorController::class,
             'admins'     => AdminController::class,
+            'providers'  => ProviderController::class,
         ]);
         Route::group(['prefix' => 'config'], function () {
             Route::get('/', [ConfigController::class, 'config'])->name('config');
@@ -87,5 +93,11 @@ Route::group(['middleware' => 'WebLang'], function () {
             Route::get('/', [ProviderHomeController::class, 'profile'])->name('profile');
             Route::post('/store', [ProviderHomeController::class, 'profileStore'])->name('profileStore');
         });
+        Route::resources([
+            'class-rooms' => ClassRoomController::class,
+            'units'       => UnitController::class,
+            'lessons'     => LessonController::class,
+            'attachments' => AttachmentController::class,
+        ]);
     });
 });
