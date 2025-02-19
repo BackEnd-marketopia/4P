@@ -122,6 +122,32 @@
                         </ul>
                     </div>
                 </li>
+                <li
+                    class="nav-item {{ Route::currentRouteName() == 'admin.notifications.index' || Route::currentRouteName() == 'admin.notifications.create' ? 'active' : '' }}">
+                    <a data-bs-toggle="collapse" href="#Notifications" class="collapsed" aria-expanded="false">
+                        <i class="fas fa-bell"></i>
+                        <p>{{ __('message.Notifications') }}</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="Notifications">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{ route('admin.notifications.create') }}">
+                                    <span class="sub-item">{{ __('message.Add') }}</span>
+                                </a>
+                                <a href="{{ route('admin.notifications.index') }}">
+                                    <span class="sub-item">{{ __('message.List') }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item {{ Route::currentRouteName() == 'admin.ads.index' ? 'active' : '' }}">
+                    <a href="{{ route('admin.ads.index') }}">
+                        <i class="fas fa-bullhorn"></i>
+                        <p>{{ __('message.Advertisements') }}</p>
+                    </a>
+                </li>
                 <li class="nav-item {{ Route::currentRouteName() == 'admin.cities.index' ? 'active' : '' }}">
                     <a href="{{ route('admin.cities.index') }}">
                         <i class="fas fa-globe"></i>

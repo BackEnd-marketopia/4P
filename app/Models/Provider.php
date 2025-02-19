@@ -22,4 +22,9 @@ class Provider extends Model
     {
         return $this->belongsToMany(EducationDepartment::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

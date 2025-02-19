@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\ConfigController;
 use App\Http\Controllers\Api\DiscountController;
 use App\Http\Controllers\Api\EducationController;
 use App\Http\Controllers\Api\HomeController as ApiHomeController;
+use App\Http\Controllers\Api\NotificationController;
 
 Route::group(['middleware' => 'lang'], function () {
     Route::group(['prefix' => 'auth'], function () {
@@ -21,6 +22,7 @@ Route::group(['middleware' => 'lang'], function () {
     Route::get('/home', [ConfigController::class, 'homePage'])->name('homePage');
     Route::get('/categories', [ApiHomeController::class, 'categories'])->name('categories');
     Route::get('/feeds', [ApiHomeController::class, 'feeds'])->name('feeds');
+    Route::get('/feed/details/{id}', [ApiHomeController::class, 'feedDetails'])->name('feedDetails');
 
     Route::get('/vendors/{category_id}', [ApiHomeController::class, 'vendorsByCategoryId'])->name('vendor');
     Route::get('/vendor/{id}', [ApiHomeController::class, 'vendorDetails'])->name('vendorDetails');
@@ -31,9 +33,13 @@ Route::group(['middleware' => 'lang'], function () {
         Route::post('/discountChecked/{discountId}', [DiscountController::class, 'discountChecked'])->name('discountChecked');
         Route::get('/attachments/{lessonId}', [EducationController::class, 'attachments'])->name('attachments');
     });
+    Route::group(['prefix' => 'notification'], function () {
+        Route::get('/', [NotificationController::class, 'getNotifications'])->name('getNotifications');
+    });
     Route::get('/educationDepartment', [EducationController::class, 'educationDepartment'])->name('educationDepartment');
     Route::get('/providers/{educationDepartmentId}', [EducationController::class, 'providers'])->name('providers');
     Route::get('/class_rooms/{providerId}', [EducationController::class, 'classRooms'])->name('class_rooms');
     Route::get('/units/{classRoomId}', [EducationController::class, 'units'])->name('units');
     Route::get('/lessons/{unitId}', [EducationController::class, 'lessons'])->name('lessons');
+    Route::get('/ads-clicked/{id}', [ConfigController::class, 'clickedAds'])->name('clickedAds');
 });

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Advertisement;
 use App\Http\Controllers\Admin\Auth\AuthController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\ConfigController;
 use App\Http\Controllers\Admin\FeedController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\PlayerFormController;
 use App\Http\Controllers\Admin\ProviderController;
 use App\Http\Controllers\Admin\UserController;
@@ -37,15 +39,17 @@ Route::group(['middleware' => 'WebLang'], function () {
             Route::post('/update', [HomeController::class, 'profileMeSotre'])->name('profileMeSotre');
         });
         Route::resources([
-            'player_forms' => PlayerFormController::class,
-            'cities'     => CityController::class,
-            'banners'    => BannerController::class,
-            'feeds'      => FeedController::class,
-            'categories' => CategoryController::class,
-            'users'      => UserController::class,
-            'vendors'    => VendorController::class,
-            'admins'     => AdminController::class,
-            'providers'  => ProviderController::class,
+            'player_forms'  => PlayerFormController::class,
+            'cities'        => CityController::class,
+            'banners'       => BannerController::class,
+            'feeds'         => FeedController::class,
+            'categories'    => CategoryController::class,
+            'users'         => UserController::class,
+            'vendors'       => VendorController::class,
+            'admins'        => AdminController::class,
+            'providers'     => ProviderController::class,
+            'ads'           => Advertisement::class,
+            'notifications' => NotificationController::class,
         ]);
         Route::group(['prefix' => 'config'], function () {
             Route::get('/', [ConfigController::class, 'config'])->name('config');

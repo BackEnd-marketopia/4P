@@ -112,4 +112,10 @@ class HomeController extends Controller
 
         return Response::api(__('message.Success'), 200, true, null, ['feeds' => $data]);
     }
+
+    public function feedDetails($id)
+    {
+        $feed = Feed::findOrFail($id);
+        return Response::api(__('message.Success'), 200, true, null, ['feed' => $feed]);
+    }
 }

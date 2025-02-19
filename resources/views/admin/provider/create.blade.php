@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title', 'Add Vendor')
+@section('title', 'Add Provider')
 @section('content')
     <div class="container">
         <div class="page-inner">
@@ -62,7 +62,7 @@
                                             <div class="input-group input-group-alternative">
                                                 <input class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}"
                                                     placeholder="{{ __('message.Image') }}" type="file" name="image"
-                                                    value="{{ old('image') }}" autofocus>
+                                                    value="{{ old('image') }}" required>
                                             </div>
                                             @if ($errors->has('image'))
                                                 <span class="invalid-feedback" style="display: block;" role="alert">
@@ -132,7 +132,7 @@
                                         <div
                                             class="form-group{{ $errors->has('logo') ? ' has-danger' : '' }} mb-3 col-md-6">
                                             <div class="input-group input-group-alternative">
-                                                <label for="image" class="input-group">{{ __('message.Logo') }}</label>
+                                                <label for="logo" class="input-group">{{ __('message.Logo') }}</label>
                                                 <input class="form-control{{ $errors->has('logo') ? ' is-invalid' : '' }}"
                                                     placeholder="{{ __('message.Logo') }}" type="file" name="logo"
                                                     value="{{ old('logo') }}" required>
@@ -153,7 +153,7 @@
                                                 name="educational_department_id[]" id="educational_department_id" multiple
                                                 required>
                                                 @foreach($educationDepartments as $educationDepartment)
-                                                    <option value="{{ $educationDepartment->id }}" {{ in_array($educationDepartment->id, old('educational_department_id', [])) ? 'selected' : '' }}>
+                                                    <option value="{{ $educationDepartment->id }}">
                                                         @if(app()->getLocale() == 'ar')
                                                             {{ $educationDepartment->name_arabic }}
                                                         @else
@@ -221,6 +221,47 @@
                                             @if ($errors->has('instagram'))
                                                 <span class="invalid-feedback" style="display: block;" role="alert">
                                                     <strong>{{ $errors->first('instagram') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div
+                                                class="form-group {{ $errors->has('account_status') ? ' has-danger' : '' }}">
+                                                <label for="account_status">{{ __('message.Status of Account') }}</label>
+                                                <select class="form-control" id="account_status" name="account_status"
+                                                    required>
+                                                    <option value="active">{{ __('message.Active') }}
+                                                    </option>
+                                                    <option value="inactive">
+                                                        {{ __('message.Inactive') }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            @if ($errors->has('account_status'))
+                                                <span class="invalid-feedback" style="display: block;" role="alert">
+                                                    <strong>{{ $errors->first('account_status') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div
+                                                class="form-group {{ $errors->has('provider_status') ? ' has-danger' : '' }}">
+                                                <label for="provider_status">{{ __('message.Status of Provider') }}</label>
+                                                <select class="form-control" id="provider_status" name="provider_status"
+                                                    required>
+                                                    <option value="pending">{{ __('message.Pending') }}
+                                                    </option>
+                                                    <option value="accepted">
+                                                        {{ __('message.Accepted') }}
+                                                    </option>
+                                                    <option value="rejected">
+                                                        {{ __('message.Rejected') }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            @if ($errors->has('provider_status'))
+                                                <span class="invalid-feedback" style="display: block;" role="alert">
+                                                    <strong>{{ $errors->first('provider_status') }}</strong>
                                                 </span>
                                             @endif
                                         </div>

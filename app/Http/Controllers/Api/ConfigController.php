@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Advertisement;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Config;
 use App\Models\Feed;
 use App\Models\Vendor;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
@@ -19,7 +21,15 @@ class ConfigController extends Controller
         $config = Config::first();
         $cities = City::select('id', app()->getLocale() == 'ar' ? 'name_arabic as name' : 'name_english as name')->get();
 
-        return Response::api(__('message.Success'), 200, true, null, ['config' => $config, 'cities' => $cities]);
+        $ads = Advertisement::whereDate('start_date', '<=', Carbon::today())
+            ->whereDate('end_date', '>=', Carbon::today())
+            ->first();
+
+        if ($ads) {
+            $ads->increment('viewed');
+        }
+
+        return Response::api(__('message.Success'), 200, true, null, ['config' => $config, 'cities' => $cities, 'ads' => $ads]);
     }
     public function homePage()
     {
@@ -48,5 +58,12 @@ class ConfigController extends Controller
 
 
         return Response::api(__('message.Success'), 200, true, null, ['banners' => $banners, 'feeds' => $feeds, 'categories' => $categories, 'vendors' => $vendors]);
+    }
+
+    public function clickedAds($id)
+    {
+        $ads = Advertisement::findOrFail($id);
+        $ads->increment('clicked');
+        return Response::api(__('message.Success'), 200, true, null, ['ads' => $ads]);
     }
 }

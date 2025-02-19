@@ -63,13 +63,13 @@
                                                         width="70px" height="70px" style="border-radius: 5px;"></td> --}}
                                                 <td>
                                                     <div class="form-button-action">
-                                                        <a href="{{ route('admin.providers.edit', $user->id) }}"
+                                                        <a href="{{ route('admin.providers.edit', $user->provider->id) }}"
                                                             data-bs-toggle="tooltip" title=""
                                                             class="btn btn-link btn-primary btn-lg"
                                                             data-original-title="Edit Task">
                                                             <i class="fa fa-edit"></i>
                                                         </a>
-                                                        <form action="{{ route('admin.providers.destroy', $user->id) }}"
+                                                        <form action="{{ route('admin.providers.destroy', $user->provider->id) }}"
                                                             method="POST" style="display:inline">
                                                             @csrf
                                                             @method('DELETE')
