@@ -56,12 +56,13 @@
                                                 @endif
                                                 <td>
                                                     <div class="form-button-action">
-                                                        <a href="{{ route('admin.notifications.edit', $notification->id) }}"
+                                                        {{-- <a
+                                                            href="{{ route('admin.notifications.edit', $notification->id) }}"
                                                             data-bs-toggle="tooltip" title=""
                                                             class="btn btn-link btn-primary btn-lg"
                                                             data-original-title="Edit Task">
                                                             <i class="fa fa-edit"></i>
-                                                        </a>
+                                                        </a> --}}
                                                         <form
                                                             action="{{ route('admin.notifications.destroy', $notification->id) }}"
                                                             method="POST" style="display:inline">

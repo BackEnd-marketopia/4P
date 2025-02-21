@@ -9,6 +9,9 @@ use App\Http\Controllers\Api\DiscountController;
 use App\Http\Controllers\Api\EducationController;
 use App\Http\Controllers\Api\HomeController as ApiHomeController;
 use App\Http\Controllers\Api\NotificationController;
+use App\Models\Code;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 Route::group(['middleware' => 'lang'], function () {
     Route::group(['prefix' => 'auth'], function () {
@@ -42,4 +45,19 @@ Route::group(['middleware' => 'lang'], function () {
     Route::get('/units/{classRoomId}', [EducationController::class, 'units'])->name('units');
     Route::get('/lessons/{unitId}', [EducationController::class, 'lessons'])->name('lessons');
     Route::get('/ads-clicked/{id}', [ConfigController::class, 'clickedAds'])->name('clickedAds');
+
+    Route::get('/user-stats', function () {
+        $stats = DB::table('users')
+            ->leftJoin('codes', 'users.id', '=', 'codes.user_id')
+            ->selectRaw('
+            MONTH(users.created_at) as month, 
+            COUNT(users.id) as total_users, 
+            COUNT(codes.user_id) as subscribed_users
+        ')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        return response()->json($stats);
+    });
 });

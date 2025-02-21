@@ -23,6 +23,11 @@ class ConfigTableSeeder extends Seeder
                 "ios_version" => 1,
                 "android_url" => "www.google.com",
                 "ios_url" => "www.google.com",
+                'image_of_card' => 'test.jpg',
+                'description_of_card_arabic' => 'تجربه',
+                'description_of_card_english' => 'test',
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
         ];
         Config::insert($config);

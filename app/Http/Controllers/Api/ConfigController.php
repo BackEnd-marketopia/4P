@@ -18,7 +18,17 @@ class ConfigController extends Controller
 {
     public function config()
     {
-        $config = Config::first();
+        $config = Config::select(
+            'terms_and_conditions',
+            'about_us',
+            'privacy_policy',
+            'android_version',
+            'ios_version',
+            'android_url',
+            'ios_url',
+            'image_of_card',
+            app()->getLocale() == 'ar' ? 'description_of_card_arabic as description_of_card' : 'description_of_card_english as description_of_card'
+        )->first();
         $cities = City::select('id', app()->getLocale() == 'ar' ? 'name_arabic as name' : 'name_english as name')->get();
 
         $ads = Advertisement::whereDate('start_date', '<=', Carbon::today())

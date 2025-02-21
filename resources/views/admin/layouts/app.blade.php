@@ -8,7 +8,7 @@
     <link rel="icon" href="{{ asset('assets/img/kaiadmin/app_logo.png') }}" type="image/x-icon" />
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" defer></script>
     <!-- Fonts and icons -->
     <script src="{{ asset('assets/js/plugin/webfont/webfont.min.js') }}"></script>
@@ -38,6 +38,7 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
 </head>
+
 <body>
     <div class="wrapper">
         @include('admin.layouts.sidebar')
@@ -46,9 +47,9 @@
             @include('admin.layouts.header')
             @if(session()->has('success'))
                 <br><br><br><br>
-                    <div class="alert alert-success">
-                        {{ session()->get('success') }}
-                    </div>
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div>
             @endif
             @if(session()->has('error'))
                 <br><br><br><br>
@@ -116,34 +117,34 @@
 </script>
 <script>
     $(document).ready(function () {
-            $("#basic-datatables").DataTable({
-                searching: true, // Enables search
-                paging: false, // Disable pagination if not needed
-                info: false, // Hide table info (optional)
-            });
-
-            $("#multi-filter-select").DataTable({
-                searching: true, // Enables search
-                paging: false,
-                info: false,
-            });
-
-            $("#add-row").DataTable({
-                searching: true, // Enables search
-                paging: false,
-                info: false,
-            });
+        $("#basic-datatables").DataTable({
+            searching: true, // Enables search
+            paging: false, // Disable pagination if not needed
+            info: false, // Hide table info (optional)
         });
+
+        $("#multi-filter-select").DataTable({
+            searching: true, // Enables search
+            paging: false,
+            info: false,
+        });
+
+        $("#add-row").DataTable({
+            searching: true, // Enables search
+            paging: false,
+            info: false,
+        });
+    });
 </script>
 <script>
-     $(document).ready(function () {
-            $('#city_ids').select2({
-                placeholder: "{{ __('message.Cities') }}",
-                allowClear: true,
-                tags: true,
-                closeOnSelect: false
-            });
+    $(document).ready(function () {
+        $('#city_ids').select2({
+            placeholder: "{{ __('message.Cities') }}",
+            allowClear: true,
+            tags: true,
+            closeOnSelect: false
         });
+    });
 </script>
 </body>
 

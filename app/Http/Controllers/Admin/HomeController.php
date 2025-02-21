@@ -6,6 +6,7 @@ use App\Helpers\Helpers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Profile\UpdatePofileRequest;
 use App\Models\User;
+use App\Models\Code;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
@@ -14,7 +15,12 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('admin.index');
+        $users = User::where('user_type', 'user')->count();
+        $vendors = User::where('user_type', 'vendor')->count();
+        $providers = User::where('user_type', 'provider')->count();
+        $codesPaied = Code::where('user_id', '!=', null)->count();
+        $codesUnpaied = Code::where('user_id', null)->count();
+        return view('admin.index', compact('users', 'vendors', 'providers', 'codesPaied', 'codesUnpaied'));
     }
     public function profileMe()
     {

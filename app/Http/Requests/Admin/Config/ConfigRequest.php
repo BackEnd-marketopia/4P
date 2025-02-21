@@ -22,13 +22,16 @@ class ConfigRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'android_version'      => 'required |integer',
-            'ios_version'          => 'required | integer',
-            'android_url'          => 'required',
-            'ios_url'              => 'required',
-            'terms_and_conditions' => 'required',
-            'about_us'             => 'required',
-            'privacy_policy'       => 'required',
+            'android_version'           => 'required |integer',
+            'ios_version'               => 'required | integer',
+            'android_url'               => 'required',
+            'ios_url'                   => 'required',
+            'terms_and_conditions'      => 'required',
+            'about_us'                  => 'required',
+            'privacy_policy'            => 'required',
+            'image_of_card'             => 'nullable',
+            'description_of_card_arabic'    => 'required',
+            'description_of_card_english'   => 'required',
         ];
     }
 }

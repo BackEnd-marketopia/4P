@@ -36,6 +36,7 @@ class NotificationController extends Controller
      */
     public function store(StoreNotificationRequest $request)
     {
+        $image = null;
         if ($request->image)
             $image =  Helpers::addImage($request->image, 'notification');
 
@@ -46,6 +47,16 @@ class NotificationController extends Controller
             'to' => $request->to == 'users' ? 'users' : $request->city_id,
             'image' => $image ?? null,
         ]);
+
+        Helpers::sendNotification(
+            $request->title,
+            $request->body,
+            'topic',
+            $request->to == 'users' ? 'users' : $request->city_id,
+            false,
+            null,
+            $image ? env('APP_URL') . $image : null
+        );
         return redirect()->route('admin.notifications.index')->with('success', __('message.Notification Added Successfully'));
     }
 
@@ -62,9 +73,7 @@ class NotificationController extends Controller
      */
     public function edit(string $id)
     {
-        $cities = City::all();
-        $notification = Notification::findOrFail($id);
-        return view('admin.notification.edit', compact('notification', 'cities'));
+        //
     }
 
     /**
@@ -72,25 +81,7 @@ class NotificationController extends Controller
      */
     public function update(StoreNotificationRequest $request, string $id)
     {
-        $notification = Notification::findOrFail($id);
-
-        $image = $request->image ? $request->image : $notification->image;
-
-        if ($request->image) {
-            if (File::exists($notification->image)) {
-                File::delete($notification->image);
-            }
-            $image = Helpers::addImage($request->image, 'notification');
-        }
-
-        $notification->update([
-            'title' => $request->title,
-            'body' => $request->body,
-            'type' => 'topic',
-            'to' => $request->to == 'users' ? 'users' : $request->city_id,
-            'image' => $image ?? null,
-        ]);
-        return redirect()->route('admin.notifications.index')->with('success', __('message.Notification Edit Successfully'));
+        //
     }
 
     /**

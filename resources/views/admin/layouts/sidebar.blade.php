@@ -122,6 +122,12 @@
                         </ul>
                     </div>
                 </li>
+                <li class="nav-item {{ Route::currentRouteName() == 'admin.codes.index' ? 'active' : '' }}">
+                    <a href="{{ route('admin.codes.index') }}">
+                        <i class="fas fa-key"></i>
+                        <p>{{ __('message.Codes') }}</p>
+                    </a>
+                </li>
                 <li
                     class="nav-item {{ Route::currentRouteName() == 'admin.notifications.index' || Route::currentRouteName() == 'admin.notifications.create' ? 'active' : '' }}">
                     <a data-bs-toggle="collapse" href="#Notifications" class="collapsed" aria-expanded="false">

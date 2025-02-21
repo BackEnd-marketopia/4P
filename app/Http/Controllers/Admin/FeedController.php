@@ -9,6 +9,8 @@ use App\Http\Requests\Admin\Feed\UpdateFeedRequest;
 use Illuminate\Http\Request;
 use App\Models\Feed;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
+
 
 class FeedController extends Controller
 {
@@ -102,5 +104,19 @@ class FeedController extends Controller
 
         $feed->delete();
         return redirect()->route('admin.feeds.index')->with('success', __('message.Feed Deleted Successfully'));
+    }
+
+    public function notification($id)
+    {
+        $feed = Feed::findOrFail($id);
+        Helpers::sendNotification(
+            Str::limit($feed->title, 50),
+            Str::limit($feed->short_description, 50),
+            'topic',
+            'users',
+            false,
+            $feed->image ? env('APP_URL') . $feed->image : null
+        );
+        return redirect()->route('admin.feeds.index')->with('success', __('message.Notification Sent Successfully'));
     }
 }

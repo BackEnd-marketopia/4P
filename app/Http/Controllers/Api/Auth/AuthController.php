@@ -32,9 +32,10 @@ class AuthController extends Controller
             'image'    => $image ?? null,
             'password' => Hash::make($request->password),
             'city_id'  => $request->city_id,
+            'fcm_token' => $request->fcmToken ?? null,
         ]);
         $token = JWTAuth::fromUser($user);
-
+        $user->load(['code']);
         return Response::api(__('message.user_registered_success'), 200, true, null, ['user' => $user, 'token' => $token]);
     }
 
@@ -43,7 +44,7 @@ class AuthController extends Controller
         if (!$request->email && !$request->phone)
             return Response::api(__('message.email_or_phone_required'), 400, false, 400);
 
-        $user = User::where($request->email ? 'email' : 'phone', $request->email ? $request->email : $request->phone)
+        $user = User::with(['code'])->where($request->email ? 'email' : 'phone', $request->email ? $request->email : $request->phone)
             ->first();
 
         if (!$user)
@@ -59,6 +60,10 @@ class AuthController extends Controller
 
         if (!$token = auth('api')->attempt($credentials))
             return Response::api(__('message.incorrect_password'), 400, false, 400);
+
+        $user->update([
+            'fcm_token' => $request->fcmToken ?? null,
+        ]);
 
         return Response::api(__('message.login_success'), 200, true, null, [
             'user' => $user,
@@ -78,7 +83,8 @@ class AuthController extends Controller
 
     public function profile()
     {
-        $user = auth('api')->user();
+        $user = User::findOrFail(auth('api')->user()->id);
+        $user->load(['code']);
         return Response::api(__('message.Success'), 200, true, null, $user);
     }
 

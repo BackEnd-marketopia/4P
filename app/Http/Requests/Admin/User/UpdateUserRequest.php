@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -31,6 +32,18 @@ class UpdateUserRequest extends FormRequest
             'password' => 'nullable | confirmed | min:8 | regex:/[A-Za-z]/ | regex:/[0-9]/',
             'city_id'  => 'required | exists:cities,id',
             'status'   => 'required |in:active,inactive',
+            'one_year'  => 'nullable',
+            'start_date' => [
+                'nullable',
+                'date',
+                Rule::requiredIf(fn() => request()->filled('end_date') && request()->missing('one_year'))
+            ],
+            'end_date' => [
+                'nullable',
+                'date',
+                Rule::requiredIf(fn() => request()->filled('start_date') && request()->missing('one_year')),
+                'after_or_equal:start_date'
+            ]
         ];
     }
 

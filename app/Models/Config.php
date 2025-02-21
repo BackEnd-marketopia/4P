@@ -15,5 +15,8 @@ class Config extends Model
         'ios_version',
         'android_url',
         'ios_url',
+        'image_of_card',
+        'description_of_card_arabic',
+        'description_of_card_english',
     ];
 }

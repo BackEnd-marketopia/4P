@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('code')->nullable()->unique();
             $table->string('image')->nullable();
             $table->string('user_type')->default('user');
+            $table->text('fcm_token')->nullable();
             $table->string('status')->default('active');
             $table->rememberToken();
             $table->timestamps();

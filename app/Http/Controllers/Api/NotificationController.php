@@ -23,10 +23,12 @@ class NotificationController extends Controller
                                 ->orWhere('to', auth('api')->user()->city_id);
                         });
                 })
+                ->orderByDesc('created_at')
                 ->paginate(10);
         } else {
             $notifications = Notification::where('type', 'topic')
                 ->where('to', 'users')
+                ->orderByDesc('created_at')
                 ->paginate(10);
         }
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Auth\AuthController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\CodeController;
 use App\Http\Controllers\Admin\ConfigController;
 use App\Http\Controllers\Admin\FeedController;
 use App\Http\Controllers\Admin\HomeController;
@@ -50,7 +51,17 @@ Route::group(['middleware' => 'WebLang'], function () {
             'providers'     => ProviderController::class,
             'ads'           => Advertisement::class,
             'notifications' => NotificationController::class,
+            'codes'         => CodeController::class,
         ]);
+        Route::get('/check-codes', function () {
+            $hasCodes = \App\Models\Code::exists();
+            return response()->json(['has_codes' => $hasCodes]);
+        })->name('check.codes');
+
+        Route::post('/codes/destroy-ajax/{id}', [CodeController::class, 'destroyAjax'])->name('destroyAjax');
+        Route::get('/admin/codes/export', [CodeController::class, 'exportCodes'])->name('codes.export');
+
+        Route::get('/feed/notification/{id}', [FeedController::class, 'notification'])->name('feed.notification');
         Route::group(['prefix' => 'config'], function () {
             Route::get('/', [ConfigController::class, 'config'])->name('config');
             Route::put('/update/{id}', [ConfigController::class, 'configStore'])->name('configStore');
