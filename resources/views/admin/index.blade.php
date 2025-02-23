@@ -160,31 +160,45 @@
     const ctx = document.getElementById("userStatsChart").getContext("2d");
 
     function fetchUserStats() {
-      fetch("/api/user-stats") // Your Laravel API
+      fetch("/api/user-stats") // استدعاء API في Laravel
       .then(response => response.json())
       .then(data => {
-        // Extracting months, total users, and subscribed users
-        const labels = data.map(item => getMonthName(item.month));
-        const totalUsers = data.map(item => item.total_users);
-        const subscribedUsers = data.map(item => item.subscribed_users);
+        // ترتيب البيانات حسب الشهر
+        data.sort((a, b) => a.month - b.month);
 
-        // Create Chart
+        // استخراج القيم المطلوبة
+        const labels = data.map(item => getMonthName(item.month));
+        const activeUsers = data.map(item => item.total_active_users);
+        const subscribedUsers = data.map(item => item.total_subscribed_users);
+
+        // تحديد لغة الموقع
+        const userLang = document.documentElement.lang || navigator.language || "en";
+
+        // تحديد الترجمة بناءً على اللغة
+        const translations = {
+        en: { active: "Active Users", subscribed: "Subscribed Users", month: "Month", users: "Users" },
+        ar: { active: "المستخدمون النشطون", subscribed: "المستخدمون المشتركون", month: "الشهر", users: "المستخدمون" }
+        };
+
+        const t = translations[userLang.startsWith("ar") ? "ar" : "en"]; // اختيار الترجمة المناسبة
+
+        // إنشاء الرسم البياني
         new Chart(ctx, {
         type: "line",
         data: {
           labels: labels,
           datasets: [
           {
-            label: "Active Users",
-            data: totalUsers,
+            label: t.active,
+            data: activeUsers,
             backgroundColor: "rgba(54, 162, 235, 0.2)",
             borderColor: "rgba(54, 162, 235, 1)",
             borderWidth: 2,
             fill: true,
-            tension: 0.4 // Curve effect
+            tension: 0.4
           },
           {
-            label: "Subscribers",
+            label: t.subscribed,
             data: subscribedUsers,
             backgroundColor: "rgba(255, 99, 132, 0.2)",
             borderColor: "rgba(255, 99, 132, 1)",
@@ -205,10 +219,10 @@
           },
           scales: {
           x: {
-            title: { display: true, text: "Month" }
+            title: { display: true, text: t.month }
           },
           y: {
-            title: { display: true, text: "Users" },
+            title: { display: true, text: t.users },
             beginAtZero: true
           }
           }
@@ -218,16 +232,19 @@
       .catch(error => console.error("Error fetching user stats:", error));
     }
 
-    // Helper function to convert month number to name
+    // تحويل رقم الشهر إلى اسم حسب لغة المستخدم
     function getMonthName(month) {
-      const months = [
-      "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-      ];
-      return months[month - 1];
+      const userLang = document.documentElement.lang || navigator.language || "en";
+
+      const months = {
+      en: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      ar: ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"]
+      };
+
+      return months[userLang.startsWith("ar") ? "ar" : "en"][month - 1];
     }
 
-    // Fetch stats when the page loads
+    // استدعاء البيانات عند تحميل الصفحة
     fetchUserStats();
     });
   </script>

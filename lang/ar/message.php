@@ -272,4 +272,6 @@ return [
     'Subscribed Users' => 'المستخدمين المشتركين',
     'User Statistics' => 'إحصائيات المستخدم',
     'Excel' => 'اكسل',
+    'Subscribers' => 'المشتركين',
+    'Active Users' => 'المستخدمين النشطين',
 ];

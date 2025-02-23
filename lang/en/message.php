@@ -272,4 +272,6 @@ return [
     'Subscribed Users' => 'Subscribed Users',
     'User Statistics' => 'User Statistics',
     'Excel' => 'Excel',
+    'Subscribers' => 'Subscribers',
+    'Active Users' => 'Active Users',
 ];

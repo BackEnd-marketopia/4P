@@ -47,17 +47,50 @@ Route::group(['middleware' => 'lang'], function () {
     Route::get('/ads-clicked/{id}', [ConfigController::class, 'clickedAds'])->name('clickedAds');
 
     Route::get('/user-stats', function () {
-        $stats = DB::table('users')
-            ->leftJoin('codes', 'users.id', '=', 'codes.user_id')
+        $activeUsers = DB::table('users')
+            ->where('user_type', 'user')
+            ->where('status', 'active')
             ->selectRaw('
-            MONTH(users.created_at) as month, 
-            COUNT(users.id) as total_users, 
-            COUNT(codes.user_id) as subscribed_users
-        ')
+        MONTH(users.created_at) as month, 
+        COUNT(users.id) as total_active_users
+    ')
             ->groupBy('month')
             ->orderBy('month')
             ->get();
 
-        return response()->json($stats);
+        $subscribedUsers = DB::table('codes')
+            ->join('users', 'users.id', '=', 'codes.user_id')
+            ->where('users.user_type', 'user')
+            ->whereNotNull('codes.user_id')
+            ->selectRaw('
+        MONTH(codes.updated_at) as month, 
+        COUNT(DISTINCT codes.user_id) as total_subscribed_users
+    ')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+        $stats = [];
+
+        foreach ($activeUsers as $user) {
+            $stats[$user->month] = [
+                'month' => $user->month,
+                'total_active_users' => $user->total_active_users,
+                'total_subscribed_users' => 0,
+            ];
+        }
+
+        foreach ($subscribedUsers as $sub) {
+            if (isset($stats[$sub->month])) {
+                $stats[$sub->month]['total_subscribed_users'] = $sub->total_subscribed_users;
+            } else {
+                $stats[$sub->month] = [
+                    'month' => $sub->month,
+                    'total_active_users' => 0,
+                    'total_subscribed_users' => $sub->total_subscribed_users,
+                ];
+            }
+        }
+
+        return response()->json(array_values($stats));
     });
 });
