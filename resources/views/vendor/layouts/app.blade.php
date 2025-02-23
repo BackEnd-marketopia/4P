@@ -6,9 +6,10 @@
     <title>@yield('title')</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="{{ asset('assets/img/kaiadmin/app_logo.png') }}" type="image/x-icon" />
-    
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Fonts and icons -->
     <script src="{{ asset('assets/js/plugin/webfont/webfont.min.js') }}"></script>
@@ -38,6 +39,7 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
 </head>
+
 <body>
     <div class="wrapper">
         @include('vendor.layouts.sidebar')
@@ -46,13 +48,14 @@
             @include('vendor.layouts.header')
             @if(session()->has('success'))
                 <br><br><br><br>
-                    <div class="alert alert-success">
-                        {{ session()->get('success') }}
-                    </div>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session()->get('success') }}
+                </div>
             @endif
+
             @if(session()->has('error'))
                 <br><br><br><br>
-                <div class="alert alert-danger">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     {{ session()->get('error') }}
                 </div>
             @endif
@@ -116,24 +119,24 @@
 </script>
 <script>
     $(document).ready(function () {
-            $("#basic-datatables").DataTable({
-                searching: true, // Enables search
-                paging: false, // Disable pagination if not needed
-                info: false, // Hide table info (optional)
-            });
-
-            $("#multi-filter-select").DataTable({
-                searching: true, // Enables search
-                paging: false,
-                info: false,
-            });
-
-            $("#add-row").DataTable({
-                searching: true, // Enables search
-                paging: false,
-                info: false,
-            });
+        $("#basic-datatables").DataTable({
+            searching: true, // Enables search
+            paging: false, // Disable pagination if not needed
+            info: false, // Hide table info (optional)
         });
+
+        $("#multi-filter-select").DataTable({
+            searching: true, // Enables search
+            paging: false,
+            info: false,
+        });
+
+        $("#add-row").DataTable({
+            searching: true, // Enables search
+            paging: false,
+            info: false,
+        });
+    });
 </script>
 <script>
     $(document).ready(function () {
@@ -143,6 +146,90 @@
             tags: true,
             closeOnSelect: false
         });
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('.delete-btn').forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault(); // Prevent form submission
+
+                let form = this.closest('form'); // Get the closest delete form
+
+                Swal.fire({
+                    title: "{{ __('message.Are You Sure') }}",
+                    text: "{{ __('message.This action cannot be undone') }}",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonText: "{{ __('message.Yes, delete it!') }}",
+                    cancelButtonText: "{{ __('message.Cancel') }}"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('.delete-btn').forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault(); // Prevent form submission
+
+                let form = this.closest('form'); // Get the closest delete form
+
+                Swal.fire({
+                    title: "{{ __('message.Are You Sure') }}",
+                    text: "{{ __('message.This action cannot be undone') }}",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonText: "{{ __('message.Yes, delete it!') }}",
+                    cancelButtonText: "{{ __('message.Cancel') }}"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    });
+</script>
+<script>
+    function togglePassword() {
+        let passwordInput = document.getElementById("password");
+        let eyeIcon = document.getElementById("eye-icon");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            eyeIcon.classList.remove("fa-eye");
+            eyeIcon.classList.add("fa-eye-slash");
+        } else {
+            passwordInput.type = "password";
+            eyeIcon.classList.remove("fa-eye-slash");
+            eyeIcon.classList.add("fa-eye");
+        }
+    }
+</script>
+<script>
+    // Wait for the page to load
+    document.addEventListener("DOMContentLoaded", function () {
+        // Select all alert messages
+        let alerts = document.querySelectorAll('.alert');
+
+        // Set timeout to fade out and remove alerts after 3 seconds (3000ms)
+        setTimeout(() => {
+            alerts.forEach(alert => {
+                alert.style.transition = "opacity 0.5s ease";
+                alert.style.opacity = "0";
+                setTimeout(() => alert.remove(), 500); // Remove from DOM after fade-out
+            });
+        }, 3000);
     });
 </script>
 </body>

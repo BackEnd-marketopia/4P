@@ -64,7 +64,8 @@
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" data-bs-toggle="tooltip" title=""
-                                                                class="btn btn-link btn-danger" data-original-title="Remove">
+                                                                class="btn btn-link btn-danger delete-btn"
+                                                                data-original-title="Remove">
                                                                 <i class="fa fa-times"></i>
                                                             </button>
                                                         </form>

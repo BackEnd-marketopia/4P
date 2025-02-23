@@ -77,6 +77,9 @@
                                                     class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
                                                     name="password" placeholder="{{ __('message.Password') }}"
                                                     type="password" required>
+                                                <i id="eye-icon" class="fa fa-eye position-absolute"
+                                                    style="right: 20px; top: 50%; transform: translateY(-50%); cursor: pointer; z-index: 10;"
+                                                    onclick="togglePassword()"></i>
                                             </div>
                                             @if ($errors->has('password'))
                                                 <span class="invalid-feedback" style="display: block;" role="alert">

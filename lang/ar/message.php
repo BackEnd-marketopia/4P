@@ -274,4 +274,7 @@ return [
     'Excel' => 'اكسل',
     'Subscribers' => 'المشتركين',
     'Active Users' => 'المستخدمين النشطين',
+    'This action cannot be undone' => 'لا يمكن التراجع عن هذا الإجراء',
+    'Cancel' => 'إلغاء',
+    'Yes, delete it!' => 'نعم، احذفه!',
 ];

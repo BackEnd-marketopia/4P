@@ -6,6 +6,7 @@
     <title>Register</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="{{ asset('assets/img/kaiadmin/app_logo.png') }}" type="image/x-icon" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
 
     <script src="{{ asset('assets/js/plugin/webfont/webfont.min.js') }}"></script>
     <script>
@@ -26,6 +27,7 @@
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <!-- CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
@@ -120,19 +122,20 @@
                                         </span>
                                     @endif
                                 </div>
-                                <div
-                                    class="form-group{{ $errors->has('password') ? ' has-danger' : '' }} mb-3 col-md-6">
+                                <div class="form-group position-relative col-md-6">
                                     <div class="input-group input-group-alternative">
-                                        <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                        <input id="password"
+                                            class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
                                             name="password" placeholder="{{ __('message.Password') }}" type="password"
                                             required>
+                                        <i id="eye-icon" class="fa fa-eye position-absolute" onclick="togglePassword()"
+                                            style="right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
                                     </div>
                                     @if ($errors->has('password'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">
                                             <strong>{{ $errors->first('password') }}</strong>
                                         </span>
-                                    @endif
-                                </div>
+                                    @endif                                  </div>
                                 <div
                                     class="form-group{{ $errors->has('password_confirmation') ? ' has-danger' : '' }} mb-3 col-md-6">
                                     <div class="input-group input-group-alternative">
@@ -289,6 +292,22 @@
             closeOnSelect: false
         });
     });
+</script>
+<script>
+    function togglePassword() {
+        let passwordInput = document.getElementById("password");
+        let eyeIcon = document.getElementById("eye-icon");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            eyeIcon.classList.remove("fa-eye");
+            eyeIcon.classList.add("fa-eye-slash");
+        } else {
+            passwordInput.type = "password";
+            eyeIcon.classList.remove("fa-eye-slash");
+            eyeIcon.classList.add("fa-eye");
+        }
+    }
 </script>
 
 </html>

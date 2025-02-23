@@ -25,10 +25,10 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                        <th>{{ __('message.Name') }}</th>
-                                        <th>{{ __('message.Phone') }}</th>
-                                        <th>{{ __('message.Age') }}</th>
-                                        <th style="width: 10%">{{ __('message.Action') }}</th>
+                                            <th>{{ __('message.Name') }}</th>
+                                            <th>{{ __('message.Phone') }}</th>
+                                            <th>{{ __('message.Age') }}</th>
+                                            <th style="width: 10%">{{ __('message.Action') }}</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -46,12 +46,14 @@
                                                             data-original-title="Show Task">
                                                             <i class="fa fa-eye"></i>
                                                         </a>
-                                                        <form action="{{ route('admin.player_forms.destroy', $player_form->id) }}"
+                                                        <form
+                                                            action="{{ route('admin.player_forms.destroy', $player_form->id) }}"
                                                             method="POST" style="display:inline">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" data-bs-toggle="tooltip" title=""
-                                                                class="btn btn-link btn-danger" data-original-title="Remove">
+                                                                class="btn btn-link btn-danger delete-btn"
+                                                                data-original-title="Remove">
                                                                 <i class="fa fa-times"></i>
                                                             </button>
                                                         </form>
@@ -64,7 +66,8 @@
                                 </table>
                                 {{ $player_forms->links() }}
                                 <p>{{ __('message.Page') }}: {{ $player_forms->currentPage() }} {{ __('message.of') }}
-                                    {{ $player_forms->lastPage() }}</p>
+                                    {{ $player_forms->lastPage() }}
+                                </p>
                             </div>
                         </div>
                     </div>

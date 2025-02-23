@@ -9,7 +9,8 @@
                         <div class="card-header">
                             <div class="d-flex align-items-center">
                                 <h4 class="card-title">{{ __('message.Discounts') }}</h4>
-                                <a class="btn btn-secondary btn-round ms-auto" href="{{ route('vendor.discounts.create') }}">
+                                <a class="btn btn-secondary btn-round ms-auto"
+                                    href="{{ route('vendor.discounts.create') }}">
                                     <i class="fa fa-plus"></i>
                                     {{ __('message.Add Discount') }}
                                 </a>
@@ -45,8 +46,9 @@
                                                 <td>{{ Str::limit($discount->title, 100) }}</td>
                                                 <td>{{ Str::limit($discount->description, 100) }}</td>
                                                 <td>{{ \Carbon\Carbon::parse($discount->start_date)->format('d/m/Y') }}</td>
-                                               <td>{{ \Carbon\Carbon::parse($discount->end_date)->format('d/m/Y')  }}</td>
-                                               <td><img src="{{ asset($discount->image) }}" alt="title" width="70px" height="70px" style="border-radius: 5px;"></td>
+                                                <td>{{ \Carbon\Carbon::parse($discount->end_date)->format('d/m/Y')  }}</td>
+                                                <td><img src="{{ asset($discount->image) }}" alt="title" width="70px"
+                                                        height="70px" style="border-radius: 5px;"></td>
                                                 <td>
                                                     <div class="form-button-action">
                                                         <a href="{{ route('vendor.discounts.edit', $discount->id) }}"
@@ -60,7 +62,8 @@
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" data-bs-toggle="tooltip" title=""
-                                                                class="btn btn-link btn-danger" data-original-title="Remove">
+                                                                class="btn btn-link btn-danger delete-btn"
+                                                                data-original-title="Remove">
                                                                 <i class="fa fa-times"></i>
                                                             </button>
                                                         </form>

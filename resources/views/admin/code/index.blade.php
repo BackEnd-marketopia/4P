@@ -97,7 +97,7 @@
                                                             method="POST" style="display:inline">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-link btn-danger"
+                                                            <button type="submit" class="btn btn-link btn-danger delete-btn"
                                                                 data-bs-toggle="tooltip">
                                                                 <i class="fa fa-times"></i>
                                                             </button>

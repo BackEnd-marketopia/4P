@@ -42,7 +42,9 @@
                                         @foreach ($users as $user)
 
                                             <tr>
-                                                <td><img src="{{ asset($user->vendor->logo) }}" width="50px" height="50px" alt="logo" style="border-radius: 10%"> {{ Str::limit($user->vendor->name, 100) }}</td>
+                                                <td><img src="{{ asset($user->vendor->logo) }}" width="50px" height="50px"
+                                                        alt="logo" style="border-radius: 10%">
+                                                    {{ Str::limit($user->vendor->name, 100) }}</td>
                                                 <td>{{ Str::limit($user->email, 100) }}</td>
                                                 <td>{{ Str::limit($user->phone, 100) }}</td>
                                                 @if($user->vendor->status == 'accepted')
@@ -52,8 +54,8 @@
                                                 @else
                                                     <td>{{ Str::limit(__('message.Rejected'), 100) }}</td>
                                                 @endif
-                                                {{-- <td><img src="{{ asset($user->image) }}" alt="{{ $user->name }}" width="70px"
-                                                        height="70px" style="border-radius: 5px;"></td> --}}
+                                                {{-- <td><img src="{{ asset($user->image) }}" alt="{{ $user->name }}"
+                                                        width="70px" height="70px" style="border-radius: 5px;"></td> --}}
                                                 <td>
                                                     <div class="form-button-action">
                                                         <a href="{{ route('admin.vendors.edit', $user->id) }}"
@@ -67,7 +69,8 @@
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" data-bs-toggle="tooltip" title=""
-                                                                class="btn btn-link btn-danger" data-original-title="Remove">
+                                                                class="btn btn-link btn-danger delete-btn"
+                                                                data-original-title="Remove">
                                                                 <i class="fa fa-times"></i>
                                                             </button>
                                                         </form>
@@ -80,7 +83,8 @@
                                 </table>
                                 {{ $users->links() }}
                                 <p>{{ __('message.Page') }}: {{ $users->currentPage() }} {{ __('message.of') }}
-                                    {{ $users->lastPage() }}</p>
+                                    {{ $users->lastPage() }}
+                                </p>
                             </div>
                         </div>
                     </div>

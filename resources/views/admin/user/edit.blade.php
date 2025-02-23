@@ -87,10 +87,13 @@
                                                 @endif
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group {{ $errors->has('password') ? ' has-danger' : '' }}">
+                                                <div class="form-group {{ $errors->has('password') ? ' has-danger' : '' }} position-relative">
                                                     <label for="password">{{ __('message.Password') }}</label>
-                                                    <input type="password" class="form-control" id="password"
+                                                    <input type="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" id="password"
                                                         name="password">
+                                                    <i id="eye-icon" class="fa fa-eye position-absolute"
+                                                        style="right: 20px; top: 65%; transform: translateY(-50%); cursor: pointer; z-index: 10;"
+                                                        onclick="togglePassword()"></i>
                                                 </div>
                                                 @if ($errors->has('password'))
                                                     <span class="invalid-feedback" style="display: block;" role="alert">

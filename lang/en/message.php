@@ -274,4 +274,7 @@ return [
     'Excel' => 'Excel',
     'Subscribers' => 'Subscribers',
     'Active Users' => 'Active Users',
+    'This action cannot be undone' => 'This action cannot be undone',
+    'Cancel' => 'Cancel',
+    'Yes, delete it!' => 'Yes, delete it!',
 ];

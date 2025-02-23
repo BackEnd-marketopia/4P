@@ -79,18 +79,23 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
+                            <div class="form-group position-relative">
                                 <div class="input-group input-group-alternative">
-                                    <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                    <input id="password"
+                                        class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
                                         name="password" placeholder="{{ __('message.Password') }}" type="password"
                                         required>
+                                    <i id="eye-icon" class="fa fa-eye position-absolute" onclick="togglePassword()"
+                                        style="right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
                                 </div>
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
-                                @endif
-                            </div>
+                                @endif  
+                          </div>
+
+
                             <div class="d-flex justify-content-end mt-6">
                                 <a href="#" class="btn btn-link"
                                     style="color: #BD3628;">{{ __('message.Forget Password') }}</a>
@@ -112,5 +117,21 @@
         </div>
     </div>
 </body>
+<script>
+    function togglePassword() {
+        let passwordInput = document.getElementById("password");
+        let eyeIcon = document.getElementById("eye-icon");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            eyeIcon.classList.remove("fa-eye");
+            eyeIcon.classList.add("fa-eye-slash");
+        } else {
+            passwordInput.type = "password";
+            eyeIcon.classList.remove("fa-eye-slash");
+            eyeIcon.classList.add("fa-eye");
+        }
+    }
+</script>
 
 </html>
