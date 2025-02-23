@@ -92,5 +92,5 @@ Route::group(['middleware' => 'lang'], function () {
         }
 
         return response()->json(array_values($stats));
-    });
+    })->name('user-stats');
 });

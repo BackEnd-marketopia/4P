@@ -160,21 +160,17 @@
     const ctx = document.getElementById("userStatsChart").getContext("2d");
 
     function fetchUserStats() {
-      fetch("/api/user-stats") // استدعاء API في Laravel
+      fetch("{{ route('user-stats') }}")
       .then(response => response.json())
       .then(data => {
-        // ترتيب البيانات حسب الشهر
         data.sort((a, b) => a.month - b.month);
 
-        // استخراج القيم المطلوبة
         const labels = data.map(item => getMonthName(item.month));
         const activeUsers = data.map(item => item.total_active_users);
         const subscribedUsers = data.map(item => item.total_subscribed_users);
 
-        // تحديد لغة الموقع
         const userLang = document.documentElement.lang || navigator.language || "en";
 
-        // تحديد الترجمة بناءً على اللغة
         const translations = {
         en: { active: "Active Users", subscribed: "Subscribed Users", month: "Month", users: "Users" },
         ar: { active: "المستخدمون النشطون", subscribed: "المستخدمون المشتركون", month: "الشهر", users: "المستخدمون" }
@@ -182,7 +178,6 @@
 
         const t = translations[userLang.startsWith("ar") ? "ar" : "en"]; // اختيار الترجمة المناسبة
 
-        // إنشاء الرسم البياني
         new Chart(ctx, {
         type: "line",
         data: {
@@ -232,7 +227,6 @@
       .catch(error => console.error("Error fetching user stats:", error));
     }
 
-    // تحويل رقم الشهر إلى اسم حسب لغة المستخدم
     function getMonthName(month) {
       const userLang = document.documentElement.lang || navigator.language || "en";
 
@@ -244,7 +238,6 @@
       return months[userLang.startsWith("ar") ? "ar" : "en"][month - 1];
     }
 
-    // استدعاء البيانات عند تحميل الصفحة
     fetchUserStats();
     });
   </script>
