@@ -41,11 +41,12 @@
                                         @foreach ($notifications as $notification)
 
                                             <tr>
-                                                <td>{{ Str::limit($notification->title, 100) }}
+                                                <td>
                                                     @if($notification->image)
                                                         <img src="{{ asset($notification->image) }}" width="50px" height="50px"
                                                             alt="logo" style="border-radius: 10%">
-                                                    @endif
+                                                    @endif &nbsp;
+                                                    {{ Str::limit($notification->title, 100) }}
                                                 </td>
                                                 <td>{{ Str::limit($notification->body, 100) }}</td>
                                                 <td>{{ Str::limit($notification->type, 100) }}</td>
