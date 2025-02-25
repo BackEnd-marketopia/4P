@@ -22,6 +22,7 @@ use App\Http\Controllers\Provider\LessonController;
 use App\Http\Controllers\Provider\UnitController;
 use App\Http\Controllers\Vendor\DiscountController;
 use App\Http\Controllers\Vendor\HomeController as VendorHomeController;
+use App\Http\Controllers\Admin\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('lang/{locale}', function ($locale) {
@@ -65,6 +66,9 @@ Route::group(['middleware' => 'WebLang'], function () {
         Route::group(['prefix' => 'config'], function () {
             Route::get('/', [ConfigController::class, 'config'])->name('config');
             Route::put('/update/{id}', [ConfigController::class, 'configStore'])->name('configStore');
+        });
+        Route::group(['prefix' => 'payments'], function () {
+            Route::get('/', [PaymentController::class, 'index'])->name('payments.index');
         });
     });
     Route::group(['prefix' => 'vendor', 'as' => 'vendor.', 'middleware' => 'checkVendor'], function () {

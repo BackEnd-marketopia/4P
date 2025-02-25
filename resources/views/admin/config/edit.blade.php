@@ -25,8 +25,9 @@
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <div class="form-group
-                                                            {{ $errors->has('android_version') ? ' has-danger' : '' }}">
+                                                <div
+                                                    class="form-group
+                                                                            {{ $errors->has('android_version') ? ' has-danger' : '' }}">
                                                     <label for="android_version">{{ __('message.android_version') }}</label>
                                                     <input type="text" class="form-control" id="android_version"
                                                         name="android_version" value="{{ $config->android_version }}"
@@ -39,8 +40,9 @@
                                                 @endif
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group
-                                                            {{ $errors->has('ios_version') ? ' has-danger' : '' }}">
+                                                <div
+                                                    class="form-group
+                                                                            {{ $errors->has('ios_version') ? ' has-danger' : '' }}">
                                                     <label for="ios_version">{{ __('message.ios_version') }}</label>
                                                     <input type="text" class="form-control" id="ios_version"
                                                         name="ios_version" value="{{ $config->ios_version }}" required>
@@ -52,8 +54,9 @@
                                                 @endif
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group
-                                                            {{ $errors->has('android_url') ? ' has-danger' : '' }}">
+                                                <div
+                                                    class="form-group
+                                                                            {{ $errors->has('android_url') ? ' has-danger' : '' }}">
                                                     <label for="android_url">{{ __('message.android_url') }}</label>
                                                     <input type="text" class="form-control" id="android_url"
                                                         name="android_url" value="{{ $config->android_url }}" required>
@@ -65,8 +68,9 @@
                                                 @endif
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group
-                                                            {{ $errors->has('ios_url') ? ' has-danger' : '' }}">
+                                                <div
+                                                    class="form-group
+                                                                            {{ $errors->has('ios_url') ? ' has-danger' : '' }}">
                                                     <label for="ios_url">{{ __('message.ios_url') }}</label>
                                                     <input type="text" class="form-control" id="ios_url" name="ios_url"
                                                         value="{{ $config->ios_url }}" required>
@@ -80,12 +84,12 @@
                                             <div class="col-md-12">
                                                 <div
                                                     class="form-group
-                                                            {{ $errors->has('terms_and_conditions') ? ' has-danger' : '' }}">
+                                                                            {{ $errors->has('terms_and_conditions') ? ' has-danger' : '' }}">
                                                     <label
                                                         for="terms_and_conditions">{{ __('message.terms_and_conditions') }}</label>
                                                     <textarea type="text" class="form-control" id="terms_and_conditions"
                                                         name="terms_and_conditions" required>{{ $config->terms_and_conditions }}
-                                                            </textarea>
+                                                                            </textarea>
                                                 </div>
                                                 @if ($errors->has('terms_and_conditions'))
                                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -94,8 +98,9 @@
                                                 @endif
                                             </div>
                                             <div class="col-md-12">
-                                                <div class="form-group
-                                                            {{ $errors->has('about_us') ? ' has-danger' : '' }}">
+                                                <div
+                                                    class="form-group
+                                                                            {{ $errors->has('about_us') ? ' has-danger' : '' }}">
                                                     <label for="about_us">{{ __('message.about_us') }}</label>
                                                     <textarea type="text" class="form-control" id="about_us" name="about_us"
                                                         required>{{ $config->about_us }}</textarea>
@@ -107,8 +112,9 @@
                                                 @endif
                                             </div>
                                             <div class="col-md-12">
-                                                <div class="form-group
-                                                            {{ $errors->has('privacy_policy') ? ' has-danger' : '' }}">
+                                                <div
+                                                    class="form-group
+                                                                            {{ $errors->has('privacy_policy') ? ' has-danger' : '' }}">
                                                     <label
                                                         for="naprivacy_policyme">{{ __('message.privacy_policy') }}</label>
                                                     <textarea type="text" class="form-control" id="privacy_policy"
@@ -131,6 +137,19 @@
                                                 @if ($errors->has('image_of_card'))
                                                     <span class="invalid-feedback" style="display: block;" role="alert">
                                                         <strong>{{ $errors->first('image_of_card') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div
+                                                    class="form-group {{ $errors->has('price_of_card') ? ' has-danger' : '' }}">
+                                                    <label for="price_of_card">{{ __('message.price_of_card') }}</label>
+                                                    <input type="float" class="form-control" id="price_of_card"
+                                                        value="{{ $config->price_of_card }}" name="price_of_card">
+                                                </div>
+                                                @if ($errors->has('price_of_card'))
+                                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                                        <strong>{{ $errors->first('price_of_card') }}</strong>
                                                     </span>
                                                 @endif
                                             </div>

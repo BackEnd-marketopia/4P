@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\DiscountController;
 use App\Http\Controllers\Api\EducationController;
 use App\Http\Controllers\Api\HomeController as ApiHomeController;
 use App\Http\Controllers\Api\NotificationController;
+use App\Http\Controllers\PaymobController;
 use App\Models\Code;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -93,4 +94,7 @@ Route::group(['middleware' => 'lang'], function () {
 
         return response()->json(array_values($stats));
     })->name('user-stats');
+
+    Route::post('/payment', [PaymobController::class, 'getPaymentLink'])->middleware('auth:api');
+    Route::get('/payment/call-back', [PaymobController::class, 'paymentCallback']);
 });

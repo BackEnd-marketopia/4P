@@ -16,6 +16,7 @@ class Config extends Model
         'android_url',
         'ios_url',
         'image_of_card',
+        'price_of_card',
         'description_of_card_arabic',
         'description_of_card_english',
     ];

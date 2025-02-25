@@ -38,6 +38,7 @@ class ConfigController extends Controller
             'about_us'                      => $request->about_us,
             'privacy_policy'                => $request->privacy_policy,
             'image_of_card'                 => $image_of_card,
+            'price_of_card'                 => $request->price_of_card,
             'description_of_card_arabic'    => $request->description_of_card_arabic,
             'description_of_card_english'   => $request->description_of_card_english,
         ]);

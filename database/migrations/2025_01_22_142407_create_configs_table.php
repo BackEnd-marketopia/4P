@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('android_url');
             $table->string('ios_url');
             $table->string('image_of_card');
+            $table->double('price_of_card');
             $table->text('description_of_card_arabic');
             $table->text('description_of_card_english');
             $table->timestamps();

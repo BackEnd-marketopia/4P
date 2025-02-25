@@ -30,6 +30,7 @@ class ConfigRequest extends FormRequest
             'about_us'                  => 'required',
             'privacy_policy'            => 'required',
             'image_of_card'             => 'nullable',
+            'price_of_card'             => 'required|numeric',
             'description_of_card_arabic'    => 'required',
             'description_of_card_english'   => 'required',
         ];

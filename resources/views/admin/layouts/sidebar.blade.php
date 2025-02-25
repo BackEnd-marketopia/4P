@@ -160,6 +160,12 @@
                         <p>{{ __('message.Cities') }}</p>
                     </a>
                 </li>
+                <li class="nav-item {{ Route::currentRouteName() == 'admin.payments.index' ? 'active' : '' }}">
+                    <a href="{{ route('admin.payments.index') }}">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <p>{{ __('message.Payments') }}</p>
+                    </a>
+                </li>
                 <li class="nav-item {{ Route::currentRouteName() == 'admin.config' ? 'active' : '' }}">
                     <a href="{{ route('admin.config') }}">
                         <i class="fas fa-cog"></i>
