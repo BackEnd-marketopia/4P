@@ -42,7 +42,7 @@
                                             <div class="col-md-6">
                                                 <div
                                                     class="form-group
-                                                                                                                                                                                                                                    {{ $errors->has('name') ? ' has-danger' : '' }}">
+                                                                                                                                                                                                                                                                                                {{ $errors->has('name') ? ' has-danger' : '' }}">
                                                     <label for="name">{{ __('message.Name') }}</label>
                                                     <input type="text" class="form-control" id="name" name="name"
                                                         value="{{ old('name') }}" required>
@@ -89,10 +89,12 @@
                                                 @endif
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group {{ $errors->has('password') ? ' has-danger' : '' }} position-relative">
+                                                <div
+                                                    class="form-group {{ $errors->has('password') ? ' has-danger' : '' }} position-relative">
                                                     <label for="password">{{ __('message.Password') }}</label>
-                                                    <input type="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" id="password"
-                                                        name="password">
+                                                    <input type="password"
+                                                        class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                                        id="password" name="password">
                                                     <i id="eye-icon" class="fa fa-eye position-absolute"
                                                         style="right: 20px; top: 65%; transform: translateY(-50%); cursor: pointer; z-index: 10;"
                                                         onclick="togglePassword()"></i>
@@ -224,6 +226,7 @@
             }
         }
         $(document).ready(function () {
+            var validationError = document.getElementById("validationError");
             $('#checkCodes').click(function () {
                 if (!isAnyOptionSelected()) {
                     validationError.style.display = "block";

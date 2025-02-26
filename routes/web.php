@@ -55,7 +55,7 @@ Route::group(['middleware' => 'WebLang'], function () {
             'codes'         => CodeController::class,
         ]);
         Route::get('/check-codes', function () {
-            $hasCodes = \App\Models\Code::exists();
+            $hasCodes = \App\Models\Code::whereNull('user_id')->exists();
             return response()->json(['has_codes' => $hasCodes]);
         })->name('check.codes');
 

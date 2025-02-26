@@ -351,6 +351,7 @@
             }
         }
         $(document).ready(function () {
+            var validationError = document.getElementById("validationError");
             $('#checkCodes').click(function () {
                 if (!isAnyOptionSelected()) {
                     validationError.style.display = "block";

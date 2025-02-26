@@ -110,6 +110,7 @@ class UserController extends Controller
                 ]);
             }
         } elseif ($request->start_date != null && $request->end_date != null) {
+            dd(true);
             $code = Code::where('user_id', null)->first();
             if ($code) {
                 $code->update([

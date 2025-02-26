@@ -291,4 +291,5 @@ return [
     'Amount' => 'Amount',
     'Transaction ID' => 'Transaction ID',
     'Transaction Response Code' => 'Transaction Response Code',
+    'Assigned' => 'Assigned',
 ];

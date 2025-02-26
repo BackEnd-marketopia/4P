@@ -291,4 +291,5 @@ return [
     'Amount' => 'المبلغ',
     'Transaction ID' => 'رقم المعاملة',
     'Transaction Response Code' => 'رمز استجابة المعاملة',
+    'Assigned' => 'تم التعيين',
 ];

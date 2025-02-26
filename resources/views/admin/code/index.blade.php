@@ -85,7 +85,7 @@
                                                     @if (is_null($code->user_id))
                                                         <span class="badge bg-danger">{{ __('message.Unassigned') }}</span>
                                                     @else
-                                                        <span class="badge bg-success">{{ __('message.Assigned') }}</span>
+                                                        <span class="badge bg-success">{{ __('message.Assign') }}</span>
                                                     @endif
                                                 </td>
                                                 <td>{{ $code->start_date ?? '-' }}</td>
