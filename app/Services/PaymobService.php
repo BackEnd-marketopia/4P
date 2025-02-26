@@ -45,6 +45,7 @@ class PaymobService
 
     public function getPaymentKey($orderId, $amount, $user)
     {
+        $userName = str_replace(' ', '', $user->name);
         $token = $this->getAuthToken();
 
         $response = $this->client->post('acceptance/payment_keys', [
@@ -56,7 +57,7 @@ class PaymobService
                 'billing_data' => [
                     "first_name" => $user->name,
                     "last_name" => $user->name,
-                    "email" => $user->email ?? "",
+                    "email" => $user->email ?? $userName . '@4p.com',
                     "phone_number" => $user->phone ?? "",
                     "city" => $user->city->name_arabic ?? "",
                     "country" => "EG",
