@@ -98,9 +98,8 @@ class PaymobController extends Controller
                 ]);
             }
         }
-        return view('payment.result', [
-            'status' => $payment->status,
-            'message' => $payment->message ?? __('message.' . $payment->status),
-        ]);
+        $redirectUrl = env('FRONTEND_URL') . "vip-discounts?status={$payment->status}&message=" . urlencode($payment->message ?? __('message.' . $payment->status));
+
+        return redirect()->to($redirectUrl);
     }
 }
