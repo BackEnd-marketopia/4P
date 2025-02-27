@@ -44,10 +44,10 @@
 
 <body>
     <div class="wrapper">
-        @include('Provider.layouts.sidebar')
+        @include('provider.layouts.sidebar')
 
         <div class="main-panel">
-            @include('Provider.layouts.header')
+            @include('provider.layouts.header')
             @if(session()->has('success'))
                 <br><br><br><br>
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -62,7 +62,7 @@
                 </div>
             @endif
             @yield('content')
-            @include('Provider.layouts.footer')
+            @include('provider.layouts.footer')
         </div>
     </div>
 </body>

@@ -120,7 +120,7 @@ class ProviderController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'password' => Hash::make($request->password),
+            'password' => $request->password ? Hash::make($request->password) : $provider->user->password,
             'image' => $image,
             'user_type' => 'provider',
             'status' => $request->account_status,
