@@ -292,4 +292,6 @@ return [
     'Transaction ID' => 'رقم المعاملة',
     'Transaction Response Code' => 'رمز استجابة المعاملة',
     'Assigned' => 'تم التعيين',
+    'Checked' => 'تم الحصول عليه',
+    'Users Checked' => 'المستخدمين الحاصلين على الخصم',
 ];

@@ -21,8 +21,13 @@ class Discount extends Model
         return $this->belongsTo(Vendor::class);
     }
 
-    public function discountCheck()
+    public function discountChecks()
     {
         return $this->hasMany(DiscountCheck::class);
+    }
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'discount_checks', 'discount_id', 'user_id')
+            ->withPivot('id');
     }
 }

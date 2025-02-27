@@ -12,13 +12,24 @@
             @foreach ($vendor->discounts as $discount)
                 <div
                     style=" background-color: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                    <h2>{{ $discount->title }}</h2>
-                    <img src="{{ asset($discount->image) }}" alt="{{ $discount->title }}" width="90px" height="90px">
-                    <a style="border-radius: 10%; margin-left: 80%;font-size: large;"> <i class="fas fa-eye" style="color: #BD3625;"></i> {{ $discount->viwe_count }}</a>
-                    <a style="border-radius: 10%; margin-left: 5%;font-size: large;"><i class="fas fa-check" style="color: #BD3625"></i> {{$discount->discountCheck->count()}}</a>
+                    <img src="{{ asset($discount->image) }}" alt="{{ $discount->title }}" width="50px" height="50px">
+                    <h2 style="display: inline">{{ $discount->title }}</h2>
+                    {{-- <a style="border-radius: 10%; margin-left: 80%;font-size: large;"> <i class="fas fa-eye"
+                            style="color: #BD3625;"></i> {{ $discount->viwe_count }}</a>
+                    <a style="border-radius: 10%; margin-left: 5%;font-size: large;"><i class="fas fa-check"
+                            style="color: #BD3625"></i> {{$discount->discountCheck->count()}}</a> --}}
                     <p>{{ $discount->description }}</p>
-                    <p><strong>{{ __('message.Start Date') }}: </strong> {{ $discount->start_date }}</p>
-                    <p><strong>{{ __('message.End Date') }}: </strong> {{ $discount->end_date }}</p>
+                    <p style="display: inline"><strong>{{ __('message.Start Date') }}: </strong> {{ $discount->start_date }}</p>
+                    &nbsp;
+                    <p style="display: inline"><strong>{{ __('message.End Date') }}: </strong> {{ $discount->end_date }}</p>
+                    <br><br>
+                    <p style="color: #BD3625; display: inline;">{{ __('message.Viewed') }}:
+                        {{ $discount->viwe_count }}
+                    </p>
+                    &nbsp;&nbsp;
+                    <a style="display: inline" class="btn btn-secondary"
+                        href="{{ route('vendor.discount-checked', $discount->id) }}">{{ __('message.Checked') }}:
+                        {{$discount->discountChecks->count()}}</a>
                 </div>
                 <br>
 

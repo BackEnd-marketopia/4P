@@ -88,4 +88,14 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsTo(City::class);
     }
+
+    public function discountChecks()
+    {
+        return $this->hasMany(DiscountCheck::class);
+    }
+    public function discounts()
+    {
+        return $this->belongsToMany(Discount::class, 'discount_checks', 'user_id', 'discount_id')
+            ->withPivot('id');
+    }
 }

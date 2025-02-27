@@ -23,6 +23,7 @@ use App\Http\Controllers\Provider\UnitController;
 use App\Http\Controllers\Vendor\DiscountController;
 use App\Http\Controllers\Vendor\HomeController as VendorHomeController;
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Vendor\UserController as VendorUserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('lang/{locale}', function ($locale) {
@@ -88,6 +89,7 @@ Route::group(['middleware' => 'WebLang'], function () {
             Route::get('/', [VendorHomeController::class, 'profile'])->name('profile');
             Route::post('/update', [VendorHomeController::class, 'profileSotre'])->name('profileSotre');
         });
+        Route::get('/discount-checked/{id}', [VendorUserController::class, 'index'])->name('discount-checked');
     });
     Route::get('/', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'loginStore'])->name('loginStore');

@@ -292,4 +292,6 @@ return [
     'Transaction ID' => 'Transaction ID',
     'Transaction Response Code' => 'Transaction Response Code',
     'Assigned' => 'Assigned',
+    'Checked' => 'Checked',
+    'Users Checked' => 'Users Checked',
 ];
