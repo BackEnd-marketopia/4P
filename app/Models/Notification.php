@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Notification extends Model
 {
@@ -16,4 +17,8 @@ class Notification extends Model
         'data',
         'is_read',
     ];
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->setTimezone('Africa/Cairo');
+    }
 }
