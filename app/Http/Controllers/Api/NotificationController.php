@@ -31,7 +31,13 @@ class NotificationController extends Controller
                 ->orderByDesc('created_at')
                 ->paginate(10);
         }
-
+        $notifications->getCollection()->transform(
+            function ($notification) {
+                $notification->created_at = Carbon::parse($notification->created_at)->setTimezone(config('app.timezone'))->toDateTimeString();
+                $notification->updated_at = Carbon::parse($notification->updated_at)->setTimezone(config('app.timezone'))->toDateTimeString();
+                return $notification;
+            }
+        );
         return Response::api(__('message.Success'), 200, true, null, ['notifications' => $notifications]);
     }
 }

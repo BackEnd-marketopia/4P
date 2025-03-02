@@ -19,6 +19,11 @@ class Notification extends Model
     ];
     public function getCreatedAtAttribute($value)
     {
-        return Carbon::parse($value)->setTimezone('Africa/Cairo');
+        return Carbon::parse($value)->setTimezone(config('app.timezone'))->toDateTimeString();
+    }
+
+    public function getUpdatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->setTimezone(config('app.timezone'))->toDateTimeString();
     }
 }
