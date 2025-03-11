@@ -294,4 +294,6 @@ return [
     'Assigned' => 'تم التعيين',
     'Checked' => 'تم الحصول عليه',
     'Users Checked' => 'المستخدمين الحاصلين على الخصم',
+    'Account Deleted Successfully' => 'تم حذق الحساب بنجاح',
+    "Can't delete This Account" => "لا يمكن حذف هذا الحساب",
 ];

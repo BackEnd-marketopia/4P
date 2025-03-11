@@ -21,6 +21,7 @@ Route::group(['middleware' => 'lang'], function () {
         Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api')->name('logout');
         Route::get('/profile', [AuthController::class, 'profile'])->middleware('auth:api')->name('profile');
         Route::post('/profile/update', [AuthController::class, 'profileUpdate'])->middleware('auth:api')->name('profileUpdate');
+        Route::post('/account/delete', [AuthController::class, 'deleteAccount'])->middleware('auth:api')->name('deleteAccount');
     });
     Route::get('/config', [ConfigController::class, 'config'])->name('config');
     Route::get('/home', [ConfigController::class, 'homePage'])->name('homePage');

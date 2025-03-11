@@ -118,4 +118,16 @@ class AuthController extends Controller
         ]);
         return Response::api(__('message.Profile Updated Successfully'), 200, true, null, $user);
     }
+
+    public function deleteAccount()
+    {
+        $user = auth('api')->user();
+
+        if (($user->user_type == 'admin' && $user->id == 1) || $user->user_type == 'vendor' || $user->user_type == 'provider')
+            return Response::api(__("message.Can't delete This Account"), 403, false, 403);
+
+        $user->delete();
+
+        return Response::api(__('message.Account Deleted Successfully'), 200, true, null);
+    }
 }
