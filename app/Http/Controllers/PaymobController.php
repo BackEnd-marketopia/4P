@@ -70,7 +70,7 @@ class PaymobController extends Controller
 
         $payment->update([
             'trnx_id' => $request->id,
-            'txn_response_code' => $request->txn_response_code,
+            'txn_response_code' => $request->txn_response_code ?? null,
             'message' => $request->data_message,
             'pending' => $request->pending == "true" ? true : false,
             'success' => $request->success == "true" ? true : false,

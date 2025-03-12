@@ -38,7 +38,7 @@ class PaymentCallBackRequest extends FormRequest
     {
         return [
             'id' => 'required|string',
-            'txn_response_code' => 'required|string',
+            'txn_response_code' => 'null|string',
             'data_message' => 'required|string',
             'pending' => 'required|string',
             'success' => 'required|string',
