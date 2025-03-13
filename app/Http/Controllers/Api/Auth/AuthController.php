@@ -61,6 +61,8 @@ class AuthController extends Controller
         if (!$token = auth('api')->attempt($credentials))
             return Response::api(__('message.incorrect_password'), 400, false, 400);
 
+        if ($user->status != 'active')
+            return Response::api(__('message.You Are Blocked Now'), 400, false, 400);
         $user->update([
             'fcm_token' => $request->fcmToken ?? null,
         ]);

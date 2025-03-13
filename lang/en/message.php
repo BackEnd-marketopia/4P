@@ -296,4 +296,5 @@ return [
     'Users Checked' => 'Users Checked',
     'Account Deleted Successfully' => 'Account Deleted Successfully',
     "Can't delete This Account" => "Can't delete This Account",
+    'You Are Blocked Now' => 'You Are Blocked Now',
 ];

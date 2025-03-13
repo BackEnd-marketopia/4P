@@ -38,7 +38,8 @@ class AuthController extends Controller
         }
         if (!Hash::check($request->password, $user->password))
             return back()->withErrors(['password' => __('message.incorrect_password')]);
-
+        if ($user->status != 'active')
+            return back()->withErrors(['email' => __('message.You Are Blocked Now')]);
         auth('web')->login($user);
 
         if ($user->user_type == 'admin')
