@@ -27,10 +27,10 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group
-                                                    {{ $errors->has('name') ? ' has-danger' : '' }}">
+                                                        {{ $errors->has('name') ? ' has-danger' : '' }}">
                                                     <label for="name">{{ __('message.Name') }}</label>
                                                     <input type="text" class="form-control" id="name" name="name"
-                                                       value="{{ old('name') }}" required>
+                                                        value="{{ old('name') }}" required>
                                                 </div>
                                                 @if ($errors->has('name'))
                                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -42,7 +42,7 @@
                                                 <div class="form-group {{ $errors->has('email') ? ' has-danger' : '' }}">
                                                     <label for="email">{{ __('message.Email') }}</label>
                                                     <input type="email" class="form-control" id="email" name="email"
-                                                      value="{{ old('email') }}">
+                                                        value="{{ old('email') }}">
                                                 </div>
                                                 @if ($errors->has('email'))
                                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -54,7 +54,7 @@
                                                 <div class="form-group {{ $errors->has('phone') ? ' has-danger' : '' }}">
                                                     <label for="phone">{{ __('message.Phone') }}</label>
                                                     <input type="text" class="form-control" id="phone" name="phone"
-                                                       value="{{ old('phone') }}" required>
+                                                        value="{{ old('phone') }}" required>
                                                 </div>
                                                 @if ($errors->has('phone'))
                                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -74,10 +74,12 @@
                                                 @endif
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group {{ $errors->has('password') ? ' has-danger' : '' }} position-relative">
+                                                <div
+                                                    class="form-group {{ $errors->has('password') ? ' has-danger' : '' }} position-relative">
                                                     <label for="password">{{ __('message.Password') }}</label>
-                                                    <input type="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" id="password"
-                                                        name="password">
+                                                    <input type="password"
+                                                        class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                                        id="password" name="password">
                                                     <i id="eye-icon" class="fa fa-eye position-absolute"
                                                         style="right: 20px; top: 65%; transform: translateY(-50%); cursor: pointer; z-index: 10;"
                                                         onclick="togglePassword()"></i>

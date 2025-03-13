@@ -71,10 +71,10 @@
                                                 </span>
                                             @endif
                                         </div>
-                                        <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }} mb-3 col-md-6">
+                                        <div class="form-group @error('password') has-danger @enderror mb-3 col-md-6">
                                             <div class="input-group input-group-alternative">
                                                 <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password"
-                                                    placeholder="{{ __('message.Password') }}" type="password">
+                                                    placeholder="{{ __('message.Password') }}" type="password" id="password">
                                                 <i id="eye-icon" class="fa fa-eye position-absolute"
                                                     style="right: 20px; top: 50%; transform: translateY(-50%); cursor: pointer; z-index: 10;"
                                                     onclick="togglePassword()"></i>

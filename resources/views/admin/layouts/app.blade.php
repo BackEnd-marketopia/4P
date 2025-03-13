@@ -175,10 +175,10 @@
     });
 </script>
 <script>
+    let passwordInput = document.getElementById("password");
     function togglePassword() {
-        let passwordInput = document.getElementById("password");
         let eyeIcon = document.getElementById("eye-icon");
-
+        console.log(passwordInput);
         if (passwordInput.type === "password") {
             passwordInput.type = "text";
             eyeIcon.classList.remove("fa-eye");
