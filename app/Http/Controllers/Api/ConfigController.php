@@ -41,7 +41,7 @@ class ConfigController extends Controller
         if ($user)
             $adsQuery->where(function ($query) use ($user) {
                 $query->whereJsonContains('city_id', 'all')
-                    ->orWhereJsonContains('city_id', $user->city_id);
+                    ->orWhereJsonContains('city_id', (string) $user->city_id);
             });
         else
             $adsQuery->whereJsonContains('city_id', 'all');
