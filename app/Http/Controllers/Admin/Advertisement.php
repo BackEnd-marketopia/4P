@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\Ads\StoreAdsRequest;
 use App\Http\Requests\Admin\Ads\UpdateAdsRequest;
 use Illuminate\Http\Request;
 use App\Models\Advertisement as Ads;
+use App\Models\City;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 
@@ -27,7 +28,9 @@ class Advertisement extends Controller
      */
     public function create()
     {
-        return view('admin.ads.create');
+        $cities = City::all();
+
+        return view('admin.ads.create', compact('cities'));
     }
 
     /**
@@ -35,22 +38,37 @@ class Advertisement extends Controller
      */
     public function store(StoreAdsRequest $request)
     {
+        $city_ids = null;
+        if (!in_array('all', $request->city_ids)) {
+            $cityCount = City::whereIn('id', $request->city_ids)->count();
+            if ($cityCount != count($request->city_ids)) {
+                return redirect()->route('admin.ads.create')->with('error', __('message.city_not_found'));
+            }
+        } else
+            $city_ids = json_encode('all');
+
         $ads = Ads::where(function ($query) use ($request) {
             $query->whereDate('start_date', '<=', $request->end_date)
                 ->whereDate('end_date', '>=', $request->start_date);
         })->first();
 
+
         if ($ads)
             return redirect()->route('admin.ads.create')->with('error', __('message.Advertisement Already Exists For This Date'));
 
         $image = Helpers::addImage($request->image, 'ads');
+        if ($city_ids != 'all')
+            $city_ids = json_encode($request->city_ids);
+
         Ads::create([
             'name' => $request->name,
             'image' => $image,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'url' => $request->url ?? null,
+            'city_id' => $city_ids,
         ]);
+
         return redirect()->route('admin.ads.index')->with('success', __('message.Advertisement Added Successfully'));
     }
 
@@ -68,7 +86,10 @@ class Advertisement extends Controller
     public function edit(string $id)
     {
         $ads = Ads::findOrFail($id);
-        return view('admin.ads.edit', compact('ads'));
+
+        $cities = City::all();
+
+        return view('admin.ads.edit', compact('ads', 'cities'));
     }
 
     /**
@@ -76,6 +97,15 @@ class Advertisement extends Controller
      */
     public function update(UpdateAdsRequest $request, string $id)
     {
+        $city_ids = null;
+        if (!in_array('all', $request->city_ids)) {
+            $cityCount = City::whereIn('id', $request->city_ids)->count();
+            if ($cityCount != count($request->city_ids)) {
+                return redirect()->route('admin.ads.create')->with('error', __('message.city_not_found'));
+            }
+        } else
+            $city_ids = json_encode('all');
+
         $ad = Ads::where('id', '!=', $id)
             ->where(function ($query) use ($request) {
                 $query->whereDate('start_date', '<=', $request->end_date)
@@ -91,6 +121,10 @@ class Advertisement extends Controller
         $ads = Ads::findOrFail($id);
         $image = $request->image ? $request->image : $ads->image;
 
+        if ($city_ids != 'all')
+            $city_ids = json_encode($request->city_ids);
+
+
         if ($request->image) {
             if (File::exists($ads->image)) {
                 File::delete($ads->image);
@@ -104,6 +138,7 @@ class Advertisement extends Controller
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'url' => $request->url ?? null,
+            'city_id' => $city_ids,
         ]);
 
         return redirect()->route('admin.ads.index')->with('success', __('message.Advertisement Edit Successfully'));

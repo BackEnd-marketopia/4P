@@ -18,6 +18,8 @@ class ConfigController extends Controller
 {
     public function config()
     {
+        $user = auth('api')->user();
+
         $config = Config::select(
             'terms_and_conditions',
             'about_us',
@@ -30,11 +32,21 @@ class ConfigController extends Controller
             'price_of_card',
             app()->getLocale() == 'ar' ? 'description_of_card_arabic as description_of_card' : 'description_of_card_english as description_of_card'
         )->first();
+
         $cities = City::select('id', app()->getLocale() == 'ar' ? 'name_arabic as name' : 'name_english as name')->get();
 
-        $ads = Advertisement::whereDate('start_date', '<=', Carbon::today())
-            ->whereDate('end_date', '>=', Carbon::today())
-            ->first();
+        $adsQuery = Advertisement::whereDate('start_date', '<=', Carbon::today())
+            ->whereDate('end_date', '>=', Carbon::today());
+
+        if ($user)
+            $adsQuery->where(function ($query) use ($user) {
+                $query->whereJsonContains('city_id', 'all')
+                    ->orWhereJsonContains('city_id', $user->city_id);
+            });
+        else
+            $adsQuery->whereJsonContains('city_id', 'all');
+
+        $ads = $adsQuery->first();
 
         if ($ads) {
             $ads->increment('viewed');

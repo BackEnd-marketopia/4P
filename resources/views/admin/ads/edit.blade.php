@@ -20,10 +20,10 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div
                                                     class="form-group
-                                                                                {{ $errors->has('name') ? ' has-danger' : '' }}">
+                                                                                                      {{ $errors->has('name') ? ' has-danger' : '' }}">
                                                     <label for="name">{{ __('message.Name Arabic') }}</label>
                                                     <input type="text" class="form-control" id="name" name="name"
                                                         value="{{ $ads->name }}" required>
@@ -54,6 +54,37 @@
                                                 @if ($errors->has('url'))
                                                     <span class="invalid-feedback" style="display: block;" role="alert">
                                                         <strong>{{ $errors->first('url') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                            <div
+                                                class="form-group{{ $errors->has('city_ids') ? ' has-danger' : '' }} mb-3 col-md-6">
+                                                <label for="city_ids" class="form-label">{{ __('message.Cities') }}</label>
+                                                <select
+                                                    class="form-control{{ $errors->has('city_ids') ? ' is-invalid' : '' }}"
+                                                    name="city_ids[]" id="city_ids" multiple required>
+                                                    @php
+                                                        $cities_id = json_decode($ads->city_id, true);
+                                                        if (in_array('all', $cities_id)) {
+                                                            $cities_id = ['all'];
+                                                        }
+                                                    @endphp
+                                                    <option value="all" {{ in_array('all', $cities_id) ? 'selected' : ''  }}>
+                                                        {{ __('message.All') }}
+                                                    </option>
+                                                    @foreach($cities as $city)
+                                                        <option value="{{ $city->id }}" {{ in_array((string) $city->id, $cities_id) ? 'selected' : '' }}>
+                                                            @if(app()->getLocale() == 'ar')
+                                                                {{ $city->name_arabic }}
+                                                            @else
+                                                                {{ $city->name_english }}
+                                                            @endif
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                @if ($errors->has('city_ids'))
+                                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                                        <strong>{{ $errors->first('city_ids') }}</strong>
                                                     </span>
                                                 @endif
                                             </div>

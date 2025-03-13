@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->string('url')->nullable();
+            $table->json('city_id')->nullable();
             $table->bigInteger('viewed')->default(0);
             $table->bigInteger('clicked')->default(0);
             $table->timestamps();

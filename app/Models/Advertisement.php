@@ -14,5 +14,10 @@ class Advertisement extends Model
         'url',
         'viewed',
         'clicked',
+        'city_id',
     ];
+    public function cities()
+    {
+        return $this->hasMany(City::class);
+    }
 }
