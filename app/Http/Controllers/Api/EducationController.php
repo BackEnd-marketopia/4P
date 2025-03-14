@@ -100,8 +100,10 @@ class EducationController extends Controller
 
     public function attachments($lessonId)
     {
-        if (!auth('api')->user()->code)
+        $user = auth('api')->user();
+        if (!$user->code || $user->code->start_date > now() || $user->code->end_date < now()) {
             return Response::api(__('message.You Are Not subscribed'), 403, false, 403);
+        }
 
         $attachments = Attachment::where('lesson_id', $lessonId)
             ->orderBy('sort_order')

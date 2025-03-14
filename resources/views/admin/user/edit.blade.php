@@ -20,8 +20,8 @@
                                 <button type="button" class="btn" id="addCode"
                                     style="background-color: white; color: #BC3726; border: 1px solid #BC3726;"
                                     onmouseover="this.style.backgroundColor='#BC3726'; this.style.color='#F5F7FD';"
-                                    onmouseout="this.style.backgroundColor='white'; this.style.color='#BC3726';" data-bs-toggle="modal"
-                                    data-bs-target="#addCodeModal">
+                                    onmouseout="this.style.backgroundColor='white'; this.style.color='#BC3726';"
+                                    data-bs-toggle="modal" data-bs-target="#addCodeModal">
                                     {{ __('message.Add Code') }}
                                 </button>
                             </div>
@@ -40,7 +40,7 @@
                                             <div class="col-md-6">
                                                 <div
                                                     class="form-group
-                                                                                                                                                                                        {{ $errors->has('name') ? ' has-danger' : '' }}">
+                                                                                                                                                                                                {{ $errors->has('name') ? ' has-danger' : '' }}">
                                                     <label for="name">{{ __('message.Name') }}</label>
                                                     <input type="text" class="form-control" id="name" name="name"
                                                         value="{{ $user->name }}" required>
@@ -87,10 +87,12 @@
                                                 @endif
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group {{ $errors->has('password') ? ' has-danger' : '' }} position-relative">
+                                                <div
+                                                    class="form-group {{ $errors->has('password') ? ' has-danger' : '' }} position-relative">
                                                     <label for="password">{{ __('message.Password') }}</label>
-                                                    <input type="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" id="password"
-                                                        name="password">
+                                                    <input type="password"
+                                                        class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                                        id="password" name="password">
                                                     <i id="eye-icon" class="fa fa-eye position-absolute"
                                                         style="right: 20px; top: 65%; transform: translateY(-50%); cursor: pointer; z-index: 10;"
                                                         onclick="togglePassword()"></i>
@@ -152,38 +154,47 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                            <div class="modal fade" id="addCodeModal" tabindex="-1" aria-labelledby="addCodeModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="addCodeModal" tabindex="-1"
+                                                aria-labelledby="addCodeModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="addCodeModalLabel">
                                                                 {{ __('message.Add Code') }}
                                                             </h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
                                                             <div class="form-group">
                                                                 <label>
-                                                                    <input type="checkbox" id="oneYearCheckbox" name="one_year" value="1">
+                                                                    <input type="checkbox" id="oneYearCheckbox"
+                                                                        name="one_year" value="1">
                                                                     {{ __('message.Valid for 1 Year') }}
                                                                 </label>
                                                             </div>
                                                             <div id="dateFields" style="display: block;">
                                                                 <div class="form-group">
-                                                                    <label for="start_date">{{ __('message.Start Date') }}</label>
-                                                                    <input type="date" class="form-control" id="start_date" name="start_date">
+                                                                    <label
+                                                                        for="start_date">{{ __('message.Start Date') }}</label>
+                                                                    <input type="date" class="form-control" id="start_date"
+                                                                        name="start_date">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="end_date">{{ __('message.End Date') }}</label>
-                                                                    <input type="date" class="form-control" id="end_date" name="end_date">
+                                                                    <label
+                                                                        for="end_date">{{ __('message.End Date') }}</label>
+                                                                    <input type="date" class="form-control" id="end_date"
+                                                                        name="end_date">
                                                                 </div>
                                                             </div>
-                                                            <div id="validationError" class="alert alert-danger mt-3" style="display: none;">
+                                                            <div id="validationError" class="alert alert-danger mt-3"
+                                                                style="display: none;">
                                                                 {{ __('message.Please select an option') }}
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" id="checkCodes">{{ __('message.Add') }}</button>
+                                                            <button type="button" class="btn btn-secondary"
+                                                                id="checkCodes">{{ __('message.Add') }}</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -217,7 +228,7 @@
                                                     </div>
                                                 </div>
 
-                                            @endif                                          <!-- Modal نافذة تعديل الكود -->
+                                            @endif <!-- Modal نافذة تعديل الكود -->
                                             <div class="modal fade" id="editCodeModal" tabindex="-1"
                                                 aria-labelledby="editCodeModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
@@ -235,18 +246,19 @@
                                                                     <label
                                                                         for="edit_start_date">{{ __('message.Start Date') }}</label>
                                                                     <input type="date" class="form-control"
-                                                                        id="edit_start_date" name="start_date">
+                                                                        id="edit_start_date" name="edit_end_date">
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label
                                                                         for="edit_end_date">{{ __('message.End Date') }}</label>
                                                                     <input type="date" class="form-control"
-                                                                        id="edit_end_date" name="end_date">
+                                                                        id="edit_end_date" name="edit_end_date">
                                                                 </div>
                                                             </form>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn text-white" style="background-color: gray"
+                                                            <button type="button" class="btn text-white"
+                                                                style="background-color: gray"
                                                                 data-bs-dismiss="modal">{{ __('message.Close') }}</button>
                                                             <button type="button" class="btn btn-secondary"
                                                                 onclick="saveCodeChanges({{ $user->id }})">
@@ -311,7 +323,7 @@
             function confirmDelete(button, codeId) {
                 if (confirm("{{__('message.Are You Sure')}}")) {
                     $.ajax({
-                         url: "{{ route('admin.destroyAjax', '') }}/" + codeId,
+                        url: "{{ route('admin.destroyAjax', '') }}/" + codeId,
                         type: "POST",
                         data: {
                             _token: "{{ csrf_token() }}"
