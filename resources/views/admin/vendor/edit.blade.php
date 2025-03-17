@@ -280,8 +280,8 @@
                                                 <div class="form-group {{ $errors->has('status_of_account') ? ' has-danger' : '' }}">
                                                     <label for="status_of_account">{{ __('message.Status of Account') }}</label>
                                                     <select class="form-control" id="status_of_account" name="status_of_account" required>
-                                                        <option value="active" {{ $user->vendor->status_of_account == 'active' ? 'selected' : '' }}>{{ __('message.Active') }}</option>
-                                                        <option value="inactive" {{ $user->vendor->status_of_account == 'inactive' ? 'selected' : '' }}>{{ __('message.Inactive') }}</option>
+                                                        <option value="active" {{ $user->vendor->status == 'active' ? 'selected' : '' }}>{{ __('message.Active') }}</option>
+                                                        <option value="inactive" {{ $user->vendor->status == 'inactive' ? 'selected' : '' }}>{{ __('message.Inactive') }}</option>
                                                     </select>
                                                 </div>
                                                 @if ($errors->has('status_of_account'))
