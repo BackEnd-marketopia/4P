@@ -26,8 +26,9 @@
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <div class="form-group
-                                                                {{ $errors->has('name') ? ' has-danger' : '' }}">
+                                                <div
+                                                    class="form-group
+                                                                                {{ $errors->has('name') ? ' has-danger' : '' }}">
                                                     <label for="name">{{ __('message.Name') }}</label>
                                                     <input type="text" class="form-control" id="name" name="name"
                                                         value="{{ $user->name }}" required>
@@ -74,10 +75,12 @@
                                                 @endif
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group {{ $errors->has('password') ? ' has-danger' : '' }} position-relative">
+                                                <div
+                                                    class="form-group {{ $errors->has('password') ? ' has-danger' : '' }} position-relative">
                                                     <label for="password">{{ __('message.Password') }}</label>
-                                                    <input type="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" id="password"
-                                                        name="password">
+                                                    <input type="password"
+                                                        class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                                        id="password" name="password">
                                                     <i id="eye-icon" class="fa fa-eye position-absolute"
                                                         style="right: 20px; top: 65%; transform: translateY(-50%); cursor: pointer; z-index: 10;"
                                                         onclick="togglePassword()"></i>
@@ -102,11 +105,13 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                            <div class="form-group{{ $errors->has('name_of_brand') ? ' has-danger' : '' }} mb-3 col-md-12">
+                                            <div
+                                                class="form-group{{ $errors->has('name_of_brand') ? ' has-danger' : '' }} mb-3 col-md-12">
                                                 <div class="input-group input-group-alternative">
-                                                    <input class="form-control{{ $errors->has('name_of_brand') ? ' is-invalid' : '' }}"
-                                                        placeholder="{{ __('message.Name Of Brand') }}" type="text" name="name_of_brand"
-                                                        value="{{ $user->vendor->name }}" required>
+                                                    <input
+                                                        class="form-control{{ $errors->has('name_of_brand') ? ' is-invalid' : '' }}"
+                                                        placeholder="{{ __('message.Name Of Brand') }}" type="text"
+                                                        name="name_of_brand" value="{{ $user->vendor->name }}" required>
                                                 </div>
                                                 @if ($errors->has('name_of_brand'))
                                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -179,7 +184,7 @@
                                                     class="form-control{{ $errors->has('city_ids') ? ' is-invalid' : '' }}"
                                                     name="city_ids[]" id="city_ids" multiple required>
                                                     @php
-    $cities_id = json_decode($user->vendor->citys_id, true);
+                                                        $cities_id = json_decode($user->vendor->citys_id, true);
 
                                                     @endphp
                                                     @foreach($cities as $city)
@@ -277,11 +282,14 @@
                                                 @endif
                                             </div>
                                             <div class="col-md-12">
-                                                <div class="form-group {{ $errors->has('status_of_account') ? ' has-danger' : '' }}">
-                                                    <label for="status_of_account">{{ __('message.Status of Account') }}</label>
-                                                    <select class="form-control" id="status_of_account" name="status_of_account" required>
-                                                        <option value="active" {{ $user->vendor->status == 'active' ? 'selected' : '' }}>{{ __('message.Active') }}</option>
-                                                        <option value="inactive" {{ $user->vendor->status == 'inactive' ? 'selected' : '' }}>{{ __('message.Inactive') }}</option>
+                                                <div
+                                                    class="form-group {{ $errors->has('status_of_account') ? ' has-danger' : '' }}">
+                                                    <label
+                                                        for="status_of_account">{{ __('message.Status of Account') }}</label>
+                                                    <select class="form-control" id="status_of_account"
+                                                        name="status_of_account" required>
+                                                        <option value="active" {{ $user->status == 'active' ? 'selected' : '' }}>{{ __('message.Active') }}</option>
+                                                        <option value="inactive" {{ $user->status == 'inactive' ? 'selected' : '' }}>{{ __('message.Inactive') }}</option>
                                                     </select>
                                                 </div>
                                                 @if ($errors->has('status_of_account'))
