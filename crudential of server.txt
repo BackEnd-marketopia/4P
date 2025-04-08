@@ -1,0 +1,24 @@
+vps for next
+
+admin4p
+ZWFDk5TRe77H6ZFRFrkx
+
+username ssh
+admin4pssh
+
+ssh password
+nMIwnljeCDfy3rJ9cBkW
+
+
+admin.4papp.com
+
+site User
+fourp-app-admin
+
+Site User Password
+aaAJp9EUyhp4cLAx3Hjr
+
+database
+fourp-app-admin
+fourp-app-admin
+gYWXNNdFSSJdzd2kA778
