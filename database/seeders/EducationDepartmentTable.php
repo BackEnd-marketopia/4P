@@ -23,7 +23,7 @@ class EducationDepartmentTable extends Seeder
                 'name_english' => 'Sudanese',
             ],
             [
-                'name_arabic'  => 'أكسفود',
+                'name_arabic'  => 'أكسفورد',
                 'name_english' => 'Oxford',
             ]
         ];
