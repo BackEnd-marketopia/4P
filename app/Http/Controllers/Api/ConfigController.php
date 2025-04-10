@@ -75,6 +75,7 @@ class ConfigController extends Controller
                     app()->getLocale() == 'ar' ? 'name_arabic as name' : 'name_english as name'
                 );
             }])
+            ->where('status', 'accepted')
             ->orderBy('created_at', 'desc')
             ->take(6)
             ->get();
