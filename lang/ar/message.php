@@ -309,4 +309,5 @@ return [
     'website_link' => 'رابط الموقع الإلكتروني',
     'Error When Upload' => 'حدث خطأ أثناء التحميل',
     'Ok' => 'حسناً',
+    'View Attachment' => 'عرض المرفق'
 ];
