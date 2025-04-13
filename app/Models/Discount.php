@@ -14,6 +14,7 @@ class Discount extends Model
         'end_date',
         'vendor_id',
         'image',
+        'viwe_count',
     ];
 
     public function vendor()
