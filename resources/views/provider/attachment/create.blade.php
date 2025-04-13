@@ -193,7 +193,7 @@
                             position: 'center',
                             icon: 'error',
                             title: "{{__('message.Error When Upload')}}",
-                            text: error,
+                            text: "{{__('message.Error When Upload')}}",
                             denyButtonText: "{{ __('message.Ok') }}",
                             showDenyButton: true,
                             showConfirmButton: false,
