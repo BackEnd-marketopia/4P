@@ -30,7 +30,17 @@ class ConfigController extends Controller
             'ios_url',
             'image_of_card',
             'price_of_card',
-            app()->getLocale() == 'ar' ? 'description_of_card_arabic as description_of_card' : 'description_of_card_english as description_of_card'
+            app()->getLocale() == 'ar' ? 'description_of_card_arabic as description_of_card' : 'description_of_card_english as description_of_card',
+            'facebook_link',
+            'twitter_link',
+            'instagram_link',
+            'youtube_link',
+            'snapchat_link',
+            'tiktok_link',
+            'whatsapp_link',
+            'linkedin_link',
+            'telegram_link',
+            'website_link',
         )->first();
 
         $cities = City::select('id', app()->getLocale() == 'ar' ? 'name_arabic as name' : 'name_english as name')->get();

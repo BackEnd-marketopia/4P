@@ -41,6 +41,16 @@ class ConfigController extends Controller
             'price_of_card'                 => $request->price_of_card,
             'description_of_card_arabic'    => $request->description_of_card_arabic,
             'description_of_card_english'   => $request->description_of_card_english,
+            'facebook_link'                 => $request->facebook_link,
+            'twitter_link'                  => $request->twitter_link,
+            'instagram_link'                => $request->instagram_link,
+            'youtube_link'                  => $request->youtube_link,
+            'snapchat_link'                 => $request->snapchat_link,
+            'tiktok_link'                   => $request->tiktok_link,
+            'whatsapp_link'                 => $request->whatsapp_link,
+            'linkedin_link'                 => $request->linkedin_link,
+            'telegram_link'                 => $request->telegram_link,
+            'website_link'                  => $request->website_link,
         ]);
         return redirect()->route('admin.config')->with('success', __('message.Configurations Updated Successfully'));
     }

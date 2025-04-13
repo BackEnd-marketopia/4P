@@ -27,7 +27,7 @@
                                             <div class="col-md-6">
                                                 <div
                                                     class="form-group
-                                                                            {{ $errors->has('android_version') ? ' has-danger' : '' }}">
+                                                                                {{ $errors->has('android_version') ? ' has-danger' : '' }}">
                                                     <label for="android_version">{{ __('message.android_version') }}</label>
                                                     <input type="text" class="form-control" id="android_version"
                                                         name="android_version" value="{{ $config->android_version }}"
@@ -42,7 +42,7 @@
                                             <div class="col-md-6">
                                                 <div
                                                     class="form-group
-                                                                            {{ $errors->has('ios_version') ? ' has-danger' : '' }}">
+                                                                                {{ $errors->has('ios_version') ? ' has-danger' : '' }}">
                                                     <label for="ios_version">{{ __('message.ios_version') }}</label>
                                                     <input type="text" class="form-control" id="ios_version"
                                                         name="ios_version" value="{{ $config->ios_version }}" required>
@@ -56,7 +56,7 @@
                                             <div class="col-md-6">
                                                 <div
                                                     class="form-group
-                                                                            {{ $errors->has('android_url') ? ' has-danger' : '' }}">
+                                                                                {{ $errors->has('android_url') ? ' has-danger' : '' }}">
                                                     <label for="android_url">{{ __('message.android_url') }}</label>
                                                     <input type="text" class="form-control" id="android_url"
                                                         name="android_url" value="{{ $config->android_url }}" required>
@@ -70,7 +70,7 @@
                                             <div class="col-md-6">
                                                 <div
                                                     class="form-group
-                                                                            {{ $errors->has('ios_url') ? ' has-danger' : '' }}">
+                                                                                {{ $errors->has('ios_url') ? ' has-danger' : '' }}">
                                                     <label for="ios_url">{{ __('message.ios_url') }}</label>
                                                     <input type="text" class="form-control" id="ios_url" name="ios_url"
                                                         value="{{ $config->ios_url }}" required>
@@ -84,12 +84,12 @@
                                             <div class="col-md-12">
                                                 <div
                                                     class="form-group
-                                                                            {{ $errors->has('terms_and_conditions') ? ' has-danger' : '' }}">
+                                                                                {{ $errors->has('terms_and_conditions') ? ' has-danger' : '' }}">
                                                     <label
                                                         for="terms_and_conditions">{{ __('message.terms_and_conditions') }}</label>
                                                     <textarea type="text" class="form-control" id="terms_and_conditions"
                                                         name="terms_and_conditions" required>{{ $config->terms_and_conditions }}
-                                                                            </textarea>
+                                                                                </textarea>
                                                 </div>
                                                 @if ($errors->has('terms_and_conditions'))
                                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -100,7 +100,7 @@
                                             <div class="col-md-12">
                                                 <div
                                                     class="form-group
-                                                                            {{ $errors->has('about_us') ? ' has-danger' : '' }}">
+                                                                                {{ $errors->has('about_us') ? ' has-danger' : '' }}">
                                                     <label for="about_us">{{ __('message.about_us') }}</label>
                                                     <textarea type="text" class="form-control" id="about_us" name="about_us"
                                                         required>{{ $config->about_us }}</textarea>
@@ -114,7 +114,7 @@
                                             <div class="col-md-12">
                                                 <div
                                                     class="form-group
-                                                                            {{ $errors->has('privacy_policy') ? ' has-danger' : '' }}">
+                                                                                {{ $errors->has('privacy_policy') ? ' has-danger' : '' }}">
                                                     <label
                                                         for="naprivacy_policyme">{{ __('message.privacy_policy') }}</label>
                                                     <textarea type="text" class="form-control" id="privacy_policy"
@@ -180,6 +180,136 @@
                                                 @if ($errors->has('description_of_card_english'))
                                                     <span class="invalid-feedback" style="display: block;" role="alert">
                                                         <strong>{{ $errors->first('description_of_card_english') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div
+                                                    class="form-group {{ $errors->has('facebook_link') ? ' has-danger' : '' }}">
+                                                    <label for="facebook_link">{{ __('message.facebook_link') }}</label>
+                                                    <input type="text" class="form-control" id="facebook_link"
+                                                        name="facebook_link" value="{{ $config->facebook_link }}">
+                                                </div>
+                                                @if ($errors->has('facebook_link'))
+                                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                                        <strong>{{ $errors->first('facebook_link') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div
+                                                    class="form-group {{ $errors->has('twitter_link') ? ' has-danger' : '' }}">
+                                                    <label for="twitter_link">{{ __('message.twitter_link') }}</label>
+                                                    <input type="text" class="form-control" id="twitter_link"
+                                                        name="twitter_link" value="{{ $config->twitter_link }}">
+                                                </div>
+                                                @if ($errors->has('twitter_link'))
+                                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                                        <strong>{{ $errors->first('twitter_link') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div
+                                                    class="form-group {{ $errors->has('instagram_link') ? ' has-danger' : '' }}">
+                                                    <label for="instagram_link">{{ __('message.instagram_link') }}</label>
+                                                    <input type="text" class="form-control" id="instagram_link"
+                                                        name="instagram_link" value="{{ $config->instagram_link }}">
+                                                </div>
+                                                @if ($errors->has('instagram_link'))
+                                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                                        <strong>{{ $errors->first('instagram_link') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div
+                                                    class="form-group {{ $errors->has('youtube_link') ? ' has-danger' : '' }}">
+                                                    <label for="youtube_link">{{ __('message.youtube_link') }}</label>
+                                                    <input type="text" class="form-control" id="youtube_link"
+                                                        name="youtube_link" value="{{ $config->youtube_link }}">
+                                                </div>
+                                                @if ($errors->has('youtube_link'))
+                                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                                        <strong>{{ $errors->first('youtube_link') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div
+                                                    class="form-group {{ $errors->has('snapchat_link') ? ' has-danger' : '' }}">
+                                                    <label for="snapchat_link">{{ __('message.snapchat_link') }}</label>
+                                                    <input type="text" class="form-control" id="snapchat_link"
+                                                        name="snapchat_link" value="{{ $config->snapchat_link }}">
+                                                </div>
+                                                @if ($errors->has('snapchat_link'))
+                                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                                        <strong>{{ $errors->first('snapchat_link') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div
+                                                    class="form-group {{ $errors->has('tiktok_link') ? ' has-danger' : '' }}">
+                                                    <label for="tiktok_link">{{ __('message.tiktok_link') }}</label>
+                                                    <input type="text" class="form-control" id="tiktok_link"
+                                                        name="tiktok_link" value="{{ $config->tiktok_link }}">
+                                                </div>
+                                                @if ($errors->has('tiktok_link'))
+                                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                                        <strong>{{ $errors->first('tiktok_link') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div
+                                                    class="form-group {{ $errors->has('whatsapp_link') ? ' has-danger' : '' }}">
+                                                    <label for="whatsapp_link">{{ __('message.whatsapp_link') }}</label>
+                                                    <input type="text" class="form-control" id="whatsapp_link"
+                                                        name="whatsapp_link" value="{{ $config->whatsapp_link }}">
+                                                </div>
+                                                @if ($errors->has('whatsapp_link'))
+                                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                                        <strong>{{ $errors->first('whatsapp_link') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div
+                                                    class="form-group {{ $errors->has('linkedin_link') ? ' has-danger' : '' }}">
+                                                    <label for="linkedin_link">{{ __('message.linkedin_link') }}</label>
+                                                    <input type="text" class="form-control" id="linkedin_link"
+                                                        name="linkedin_link" value="{{ $config->linkedin_link }}">
+                                                </div>
+                                                @if ($errors->has('linkedin_link'))
+                                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                                        <strong>{{ $errors->first('linkedin_link') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div
+                                                    class="form-group {{ $errors->has('telegram_link') ? ' has-danger' : '' }}">
+                                                    <label for="telegram_link">{{ __('message.telegram_link') }}</label>
+                                                    <input type="text" class="form-control" id="telegram_link"
+                                                        name="telegram_link" value="{{ $config->telegram_link }}">
+                                                </div>
+                                                @if ($errors->has('telegram_link'))
+                                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                                        <strong>{{ $errors->first('telegram_link') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div
+                                                    class="form-group {{ $errors->has('website_link') ? ' has-danger' : '' }}">
+                                                    <label for="website_link">{{ __('message.website_link') }}</label>
+                                                    <input type="text" class="form-control" id="website_link"
+                                                        name="website_link" value="{{ $config->website_link }}">
+                                                </div>
+                                                @if ($errors->has('website_link'))
+                                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                                        <strong>{{ $errors->first('website_link') }}</strong>
                                                     </span>
                                                 @endif
                                             </div>
