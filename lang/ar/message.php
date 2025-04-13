@@ -308,4 +308,5 @@ return [
     'telegram_link' => 'رابط تيليجرام',
     'website_link' => 'رابط الموقع الإلكتروني',
     'Error When Upload' => 'حدث خطأ أثناء التحميل',
+    'Ok' => 'حسناً',
 ];

@@ -121,10 +121,15 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <div class="progress" style="display: none;">
+                                                <div class="progress"
+                                                    style="height: 25px; position: relative; display: none;">
                                                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
                                                         role="progressbar" aria-valuenow="0" aria-valuemin="0"
-                                                        aria-valuemax="100" style="width: 0%"></div>
+                                                        aria-valuemax="100" style="width: 0%">
+                                                    </div>
+                                                    <div class="progress-text"
+                                                        style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); color: #000; font-weight: bold;">
+                                                        0%</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -151,9 +156,9 @@
                         var xhr = new window.XMLHttpRequest();
                         xhr.upload.addEventListener("progress", function (evt) {
                             if (evt.lengthComputable) {
-                                var percentComplete = ((evt.loaded / evt.total) * 100);
+                                var percentComplete = Math.round((evt.loaded / evt.total) * 100);
                                 $('.progress-bar').width(percentComplete + '%');
-                                $('.progress-bar').html(Math.round(percentComplete) + '%');
+                                $('.progress-text').html(percentComplete + '%');
                             }
                         }, false);
                         return xhr;
@@ -166,14 +171,14 @@
                     beforeSend: function () {
                         $('.progress').show();
                         $('.progress-bar').width('0%');
-                        $('.progress-bar').html('0%');
+                        $('.progress-text').html('0%');
                         $('button[type="submit"]').prop('disabled', true);
                     },
                     success: function (response) {
                         Swal.fire({
                             position: 'center',
                             icon: 'success',
-                            title: "{{ __('message.Attachment Added Successfully') }}",
+                            title: "{{__('message.Attachment Added Successfully')}}",
                             showConfirmButton: false,
                             timer: 1500,
                             customClass: {
@@ -187,15 +192,17 @@
                         Swal.fire({
                             position: 'center',
                             icon: 'error',
-                            title: "{{ __('message.Error When Upload') }}",
-                            text: 'حدث خطأ أثناء رفع الملف.',
-                            confirmButtonText: 'حسناً',
+                            title: "{{__('message.Error When Upload')}}",
+                            text: "{{__('message.Error When Upload')}}",
+                            denyButtonText: "{{ __('message.Ok') }}",
+                            showDenyButton: true,
+                            showConfirmButton: false,
                             customClass: {
                                 popup: 'rtl'
                             }
                         });
                         $('.progress-bar').width('0%');
-                        $('.progress-bar').html('0%');
+                        $('.progress-text').html('0%');
                     },
                     complete: function () {
                         $('button[type="submit"]').prop('disabled', false);

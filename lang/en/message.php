@@ -308,4 +308,5 @@ return [
     'telegram_link' => 'Telegram Link',
     'website_link' => 'Website Link',
     'Error When Upload' => 'Error When Upload',
+    'Ok' => 'Ok',
 ];
