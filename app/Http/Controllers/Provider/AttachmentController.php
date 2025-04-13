@@ -17,7 +17,9 @@ class AttachmentController extends Controller
      */
     public function index()
     {
-        $attachments = Attachment::with(['lesson'])->paginate(10);
+        $attachments = Attachment::whereHas('lesson.unit.classRoom', function ($query) {
+            $query->where('provider_id', auth('web')->user()->provider->id);
+        })->with(['lesson.unit.classRoom'])->paginate(10);
 
         return view('provider.attachment.index', compact('attachments'));
     }

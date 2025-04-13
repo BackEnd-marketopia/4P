@@ -24,4 +24,9 @@ class ClassRoom extends Model
     {
         return $this->belongsTo(EducationDepartment::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'provider_id');
+    }
 }

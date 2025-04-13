@@ -10,7 +10,8 @@
                     <h6 class="op-7 mb-2">4P</h6>
                 </div>
             </div>
-            <form action="{{ route('provider.attachments.store') }}" method="POST" enctype="multipart/form-data">
+            <form id="fileUploadForm" action="{{ route('provider.attachments.store') }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-12">
@@ -119,7 +120,13 @@
                                                     </button>
                                                 </div>
                                             </div>
-
+                                            <div class="form-group">
+                                                <div class="progress" style="display: none;">
+                                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                                                        role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                                                        aria-valuemax="100" style="width: 0%"></div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -130,4 +137,71 @@
             </form>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function () {
+            $('#fileUploadForm').on('submit', function (e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+
+                $.ajax({
+                    xhr: function () {
+                        var xhr = new window.XMLHttpRequest();
+                        xhr.upload.addEventListener("progress", function (evt) {
+                            if (evt.lengthComputable) {
+                                var percentComplete = ((evt.loaded / evt.total) * 100);
+                                $('.progress-bar').width(percentComplete + '%');
+                                $('.progress-bar').html(Math.round(percentComplete) + '%');
+                            }
+                        }, false);
+                        return xhr;
+                    },
+                    url: $(this).attr('action'),
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function () {
+                        $('.progress').show();
+                        $('.progress-bar').width('0%');
+                        $('.progress-bar').html('0%');
+                        $('button[type="submit"]').prop('disabled', true);
+                    },
+                    success: function (response) {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: "{{ __('message.Attachment Added Successfully') }}",
+                            showConfirmButton: false,
+                            timer: 1500,
+                            customClass: {
+                                popup: 'rtl'
+                            }
+                        }).then(function () {
+                            window.location.href = "{{ route('provider.attachments.index') }}";
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'error',
+                            title: "{{ __('message.Error When Upload') }}",
+                            text: 'حدث خطأ أثناء رفع الملف.',
+                            confirmButtonText: 'حسناً',
+                            customClass: {
+                                popup: 'rtl'
+                            }
+                        });
+                        $('.progress-bar').width('0%');
+                        $('.progress-bar').html('0%');
+                    },
+                    complete: function () {
+                        $('button[type="submit"]').prop('disabled', false);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
