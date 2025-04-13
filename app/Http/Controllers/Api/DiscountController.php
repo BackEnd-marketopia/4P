@@ -16,8 +16,7 @@ class DiscountController extends Controller
         $user = auth('api')->user();
         $discounts = Discount::findOrFail($id)
             ->where('start_date', '<=', now())
-            ->where('end_date', '>=', now())
-            ->first();
+            ->where('end_date', '>=', now());
 
         $discounts->viwe_count += 1;
         $discounts->save();
