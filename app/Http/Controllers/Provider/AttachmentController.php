@@ -9,6 +9,7 @@ use App\Http\Requests\Provider\Attachment\UpdateAttcahmentRequest;
 use App\Models\Attachment;
 use App\Models\Lesson;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class AttachmentController extends Controller
 {
@@ -117,7 +118,9 @@ class AttachmentController extends Controller
     public function destroy(string $id)
     {
         $attachment = Attachment::findOrFail($id);
-
+        if (File::exists($attachment->url)) {
+            File::delete($attachment->url);
+        }
         $attachment->delete();
 
         return redirect()->route('provider.attachments.index')->with('success', __('message.Attachment Deleted Successfully'));
