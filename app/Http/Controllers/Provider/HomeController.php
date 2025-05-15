@@ -45,7 +45,6 @@ class HomeController extends Controller
         $user->update([
             'name'     => $request->name,
             'email'    => $request->email,
-            'phone'    => $request->phone,
             'password' => $password,
             'image'    => $image,
         ]);

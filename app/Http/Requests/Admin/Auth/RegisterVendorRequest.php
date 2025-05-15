@@ -3,6 +3,26 @@
 namespace App\Http\Requests\Admin\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\UploadedFile;
+
+/**
+ * @property string $email
+ * @property string $password
+ * @property string $name
+ * @property string $phone
+ * @property UploadedFile $image
+ * @property string $city_ids
+ * @property string $name_of_brand
+ * @property UploadedFile $logo
+ * @property UploadedFile $cover
+ * @property string $description
+ * @property string $whatsapp
+ * @property string $facebook
+ * @property string $instagram
+ * @property string $address
+ * @property string $google_map_link
+ * @property string $category_id
+ */
 
 class RegisterVendorRequest extends FormRequest
 {

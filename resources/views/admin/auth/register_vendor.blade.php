@@ -40,6 +40,29 @@
 </head>
 
 <body class="{{ $class ?? '' }}" style="background:#f7f7f7">
+    @if(session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" id="errorAlert">
+        {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <script>
+        setTimeout(function() {
+            document.getElementById('errorAlert').remove();
+        }, 5000);
+    </script>
+    @endif
+
+    @if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert" id="successAlert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <script>
+        setTimeout(function() {
+            document.getElementById('successAlert').remove();
+        }, 5000);
+    </script>
+    @endif
     <div class="container">
         <div class="row d-flex justify-content-center align-items-center vh-100">
             <div class="col-lg-8 col-md-9">

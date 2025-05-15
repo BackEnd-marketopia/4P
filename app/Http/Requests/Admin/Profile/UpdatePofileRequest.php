@@ -24,7 +24,6 @@ class UpdatePofileRequest extends FormRequest
         return [
             'name'     => 'required | string | max:255',
             'email'    => 'required | email | unique:users,email,' . auth('web')->user()->id,
-            'phone'    => 'required | digits:11 | regex:/^01\d{9}$/ | unique:users,phone,' . auth('web')->user()->id,
             'password' => 'nullable | min:8 | regex:/[A-Za-z]/ | regex:/[0-9]/ | confirmed',
             'image'    => 'nullable | max:2048',
         ];

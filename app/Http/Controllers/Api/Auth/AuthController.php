@@ -9,20 +9,30 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Helpers\Helpers;
+use App\Http\Requests\Api\Auth\ResetPasswordRequest;
 use App\Http\Requests\Api\Profile\UpdatePofileRequest;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\City;
+use App\Services\OtpService;
+use App\Http\Requests\Api\Auth\SendCodeRequest;
 
 class AuthController extends Controller
 {
+    public $otpService;
+    public function __construct(OtpService $otpService)
+    {
+        $this->otpService = $otpService;
+    }
+
     public function register(RegisterRequest $request)
     {
         if ($request->image) {
             $image = Helpers::addImage($request->image, 'user');
         }
+
 
         $user = User::create([
             'name'     => $request->name,
@@ -36,7 +46,15 @@ class AuthController extends Controller
         ]);
         $token = JWTAuth::fromUser($user);
         $user->load(['code']);
-        return Response::api(__('message.user_registered_success'), 200, true, null, ['user' => $user, 'token' => $token]);
+        $otp = $this->otpService->generateAndSend($user->phone);
+
+        if (!$otp['success'])
+            return Response::api(__('message.otp_failed'), 400, false, 400);
+
+        return Response::api(__('message.user_registered_success'), 200, true, null, [
+            'user' => $user,
+            'token' => $token,
+        ]);
     }
 
     public function login(LoginRequest $request)
@@ -113,7 +131,6 @@ class AuthController extends Controller
         $user->update([
             'name'     => $request->name,
             'email'    => $request->email,
-            'phone'    => $request->phone,
             'password' => $password,
             'image'    => $image,
             'city_id'  => $request->city_id,
@@ -131,5 +148,66 @@ class AuthController extends Controller
         $user->delete();
 
         return Response::api(__('message.Account Deleted Successfully'), 200, true, null);
+    }
+    public function sendCode(SendCodeRequest $request)
+    {
+        $key = 'otp_' . $request->phone;
+        $attempts = cache()->get($key, 0);
+
+        if ($attempts >= 5)
+            return Response::api(__('message.too_many_attempts'), 429, false, 429);
+
+        cache()->put($key, $attempts + 1, now()->addMinutes(5));
+
+        $otp = $this->otpService->generateAndSend($request->phone);
+        if (!$otp['success'])
+            return Response::api(__('message.otp_failed'), 400, false, 400);
+        return Response::api(__('message.otp_sent'), 200, true, null);
+    }
+    public function changePhone(SendCodeRequest $request)
+    {
+        $user = auth('api')->user();
+        $newPhone = User::where('phone', $request->phone)->first();
+        if ($newPhone)
+            return Response::api(__('message.phone_already_exists'), 400, false, 400);
+        $user->update([
+            'phone' => $request->phone,
+        ]);
+
+        return Response::api(__('message.phone_changed'), 200, true, null);
+    }
+    public function resetPassword(ResetPasswordRequest $request)
+    {
+        $user = auth('api')->user();
+        $user->update([
+            'password' => Hash::make($request->password),
+        ]);
+        return Response::api(__('message.password_changed'), 200, true, null);
+    }
+
+    public function verifyOtp(Request $request)
+    {
+        $request->validate([
+            'phone' => 'required|string',
+            'code'  => 'required|numeric',
+            'type'  => 'nullable|in:reset,change_phone,resend',
+        ]);
+        if ($request->type != 'change_phone') {
+            $user = User::where('phone', $request->phone)->first();
+            if (!$user)
+                return Response::api(__('message.user_not_found'), 404, false, 404);
+        }
+
+        if ($this->otpService->verify($request->phone, $request->code)) {
+            if ($request->type != 'change_phone') {
+                $user->update(['email_verified_at' => now()]);
+            }
+            if ($request->type == 'reset') {
+                $token = JWTAuth::fromUser($user);
+            }
+            return Response::api(__('message.otp_verified'), 200, true, null, $token ?? null);
+        }
+
+        return Response::api(__('message.invalid_otp'), 400, false, 400);
     }
 }

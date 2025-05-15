@@ -32,7 +32,7 @@
                                             <div class="col-md-6">
                                                 <div
                                                     class="form-group
-                                                                            {{ $errors->has('name') ? ' has-danger' : '' }}">
+                                                                                        {{ $errors->has('name') ? ' has-danger' : '' }}">
                                                     <label for="name">{{ __('message.Name') }}</label>
                                                     <input type="text" class="form-control" id="name" name="name"
                                                         value="{{ auth('web')->user()->name }}" required>

@@ -3,7 +3,25 @@
 namespace App\Http\Requests\Provider;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\UploadedFile;
 
+/**
+ * @property string $name
+ * @property string $email
+ * @property string $phone
+ * @property string $password
+ * @property UploadedFile $image
+ * @property string $city_id
+ * @property string $name_of_school_arabic
+ * @property string $name_of_school_english
+ * @property UploadedFile $logo
+ * @property array $educational_department_id
+ * @property string|null $address
+ * @property string|null $whatsapp
+ * @property string|null $facebook
+ * @property string|null $instagram
+ *
+ */
 class RegisterRequest extends FormRequest
 {
     /**

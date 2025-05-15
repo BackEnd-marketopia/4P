@@ -23,6 +23,7 @@ use App\Http\Controllers\Provider\UnitController;
 use App\Http\Controllers\Vendor\DiscountController;
 use App\Http\Controllers\Vendor\HomeController as VendorHomeController;
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\ChangePhone;
 use App\Http\Controllers\Vendor\UserController as VendorUserController;
 use Illuminate\Support\Facades\Route;
 
@@ -120,5 +121,24 @@ Route::group(['middleware' => 'WebLang'], function () {
             'lessons'     => LessonController::class,
             'attachments' => AttachmentController::class,
         ]);
+    });
+    Route::get('/verify', [AuthController::class, 'verifyView'])->name('verifyView');
+    Route::post('/verify', [AuthController::class, 'verifyVendorStore'])->name('verifyVendorStore');
+    Route::post('/verify-provider-store', [AuthController::class, 'verifyProviderStore'])->name('verifyProviderStore');
+    Route::post('/resend-code', [AuthController::class, 'resendVerificationCode'])->name('resendVerificationCode');
+    Route::post('/provider-resend-code', [AuthController::class, 'providerResendVerificationCode'])->name('providerResendVerificationCode');
+    Route::get('/reset-password', [AuthController::class, 'resetPassword'])->name('resetPassword');
+    Route::post('/reset-password', [AuthController::class, 'resetPasswordCode'])->name('resetPasswordCode');
+    Route::get('/verify-reset-password', [AuthController::class, 'verifyChangePassword'])->name('verifyChangePassword');
+    Route::get('/new-password', [AuthController::class, 'newPassword'])->name('newPassword');
+    Route::post('/verify-reset-password', [AuthController::class, 'verifyChangePasswordStore'])->name('verifyChangePasswordStore');
+    Route::post('/password-resend-code', [AuthController::class, 'passwordResendCode'])->name('passwordResendCode');
+    Route::post('/new-password', [AuthController::class, 'newPasswordStore'])->name('newPasswordStore');
+    Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
+        Route::get('/change-phone', [ChangePhone::class, 'index'])->name("newPhone");
+        Route::post('/change-phone', [ChangePhone::class, 'getNewPhone'])->name('getNewPhone');
+        Route::get('/verify', [ChangePhone::class, 'verify'])->name('verify');
+        Route::post('/verify', [ChangePhone::class, 'verifyCode'])->name('verifyCode');
+        Route::post('/resend-code', [ChangePhone::class, 'resendCode'])->name('resendCode');
     });
 });

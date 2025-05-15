@@ -9,10 +9,8 @@ use Illuminate\Support\Facades\Response;
 
 /**
  * @property string $phone
- * @property string $email
- * @property string $password
  */
-class LoginRequest extends FormRequest
+class SendCodeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,14 +19,18 @@ class LoginRequest extends FormRequest
     {
         return true;
     }
-
+    /**
+     * Handle a failed validation attempt.
+     *
+     * @param Validator $validator
+     * @throws HttpResponseException
+     */
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(
             Response::api($validator->errors()->first(), 400, false, 400)
         );
     }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -37,18 +39,13 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'phone'      => 'nullable | digits:11 | regex:/^01\d{9}$/ | exists:users,phone',
-            'email'      => 'nullable | email | exists:users,email',
-            'password'   => 'required | min:8 | regex:/[A-Za-z]/ | regex:/[0-9]/',
+            'phone'    => 'required | digits:11 | regex:/^01\d{9}$/',
         ];
     }
-
-    public function messages()
+    public function messages(): array
     {
         return [
-            'email.exists'   => __('message.email_not_found'),
             'phone.regex'    => __('message.The phone number must start with 01 and contain exactly 11 digits'),
-            'password.regex' => __('message.The password must contain at least one letter and at least one number'),
         ];
     }
 }

@@ -6,7 +6,20 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Http\UploadedFile;
 
+/**
+ * @property string $phone
+ * @property string $type
+ * @property string $code
+ * @property string $name
+ * @property string $email
+ * @property string $phone
+ * @property string $password
+ * @property UploadedFile $image
+ * @property string $city_id
+ *
+ */
 class RegisterRequest extends FormRequest
 {
     /**

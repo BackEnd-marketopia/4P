@@ -4,6 +4,10 @@ namespace App\Http\Requests\Admin\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @property string $email
+ * @property string $password
+ */
 class LoginRequest extends FormRequest
 {
     /**

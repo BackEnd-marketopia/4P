@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Login</title>
+    <title>New Password</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="{{ asset('assets/img/kaiadmin/app_logo.png') }}" type="image/x-icon" />
 
@@ -81,80 +81,41 @@
                                 </li>
                             </ul>
                         </li>
-
                         <div class="text-center text-muted mb-4">
                             <img src="{{ asset('assets/img/kaiadmin/app_logo.png') }}" alt="Logo" class="logo"
                                 width="100">
                             </br>
                             <span style="font-weight: bold; font-size: 2em;">4P</span>
+                            <h3>{{ __('message.Set New Password') }}</h3>
                         </div>
-                        <form method="POST" action="{{ route('loginStore') }}">
+
+                        <form method="POST" action="{{ route('newPasswordStore') }}">
                             @csrf
-                            <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }} mb-3">
+
+                            <div class="form-group mb-3">
                                 <div class="input-group input-group-alternative">
-                                    <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                        placeholder="{{ __('message.Email') }}" type="email" name="email"
-                                        value="{{ old('email') }}" required autofocus>
+                                    <input class="form-control" placeholder="{{ __('message.New Password') }}"
+                                        type="password" name="password" required>
                                 </div>
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" style="display: block;" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                            <div class="form-group position-relative">
-                                <div class="input-group input-group-alternative">
-                                    <input id="password"
-                                        class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                        name="password" placeholder="{{ __('message.Password') }}" type="password"
-                                        required>
-                                    <i id="eye-icon" class="fa fa-eye position-absolute" onclick="togglePassword()"
-                                        style="right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
-                                </div>
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" style="display: block;" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
                             </div>
 
-
-                            <div class="d-flex justify-content-end mt-6">
-                                <a href="{{ route('resetPassword') }}" class="btn btn-link"
-                                    style="color: #BD3628;">{{ __('message.Forget Password') }}</a>
+                            <div class="form-group mb-3">
+                                <div class="input-group input-group-alternative">
+                                    <input class="form-control" placeholder="{{ __('message.Confirm Password') }}"
+                                        type="password" name="password_confirmation" required>
+                                </div>
                             </div>
+
                             <div class="text-center">
                                 <button type="submit" class="btn btn my-4"
-                                    style="background-color: #BD3628; color: white;">{{ __('message.Sign in') }}</button>
+                                    style="background-color: #BD3628; color: white;">{{ __('message.Reset Password') }}</button>
                             </div>
                         </form>
-                        <div class="text-center mt-3">
-                            <a href="{{ route('register.vendor') }}" class="btn btn-link"
-                                style="color: #BD3628;">{{ __('message.Register as Vendor') }}</a>
-                            <a href="{{ route('register.provider') }}" class="btn btn-link"
-                                style="color: #BD3628;">{{ __('message.Register in The Educational Section') }}</a>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
-<script>
-    function togglePassword() {
-        let passwordInput = document.getElementById("password");
-        let eyeIcon = document.getElementById("eye-icon");
-
-        if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-            eyeIcon.classList.remove("fa-eye");
-            eyeIcon.classList.add("fa-eye-slash");
-        } else {
-            passwordInput.type = "password";
-            eyeIcon.classList.remove("fa-eye-slash");
-            eyeIcon.classList.add("fa-eye");
-        }
-    }
-</script>
 
 </html>

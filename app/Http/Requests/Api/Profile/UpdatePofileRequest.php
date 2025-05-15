@@ -5,8 +5,18 @@ namespace App\Http\Requests\Api\Profile;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Response;
 
+/**
+ * @property string $name
+ * @property string $email
+ * @property string $phone
+ * @property string $password
+ * @property UploadedFile $image
+ * @property string $city_id
+ * 
+ */
 class UpdatePofileRequest extends FormRequest
 {
     /**
@@ -40,7 +50,6 @@ class UpdatePofileRequest extends FormRequest
         return [
             'name'     => 'required | string | max:255',
             'email'    => 'nullable | email | unique:users,email,' . auth('api')->user()->id,
-            'phone'    => 'required | digits:11 | regex:/^01\d{9}$/ | unique:users,phone,' . auth('api')->user()->id,
             'password' => 'nullable | min:8 | regex:/[A-Za-z]/ | regex:/[0-9]/ | confirmed',
             'image'    => 'nullable',
         ];

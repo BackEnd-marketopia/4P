@@ -71,6 +71,20 @@
                                 </li>
                                 <li>
                                     <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#" onclick="Swal.fire({
+                                                                        title: '{{ __('message.Are you sure?') }}',
+                                                                        text: '{{ __('message.Do you want to change your phone number?') }}',
+                                                                        icon: 'warning',
+                                                                        showCancelButton: true,
+                                                                        confirmButtonColor: '#3085d6',
+                                                                        cancelButtonColor: '#d33',
+                                                                        confirmButtonText: '{{ __('message.Yes') }}',
+                                                                        cancelButtonText: '{{ __('message.No') }}'
+                                                                    }).then((result) => {
+                                                                        if (result.isConfirmed) {
+                                                                            window.location.href = '{{ route('profile.newPhone')  }}';
+                                                                        }
+                                                                    })">{{ __('message.Change Phone') }}</a>
                                     <a class="dropdown-item"
                                         href="{{ route('provider.account') }}">{{ __('message.My Account') }}</a>
                                     <a class="dropdown-item" href="#"

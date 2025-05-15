@@ -22,6 +22,10 @@ Route::group(['middleware' => 'lang'], function () {
         Route::get('/profile', [AuthController::class, 'profile'])->middleware('auth:api')->name('profile');
         Route::post('/profile/update', [AuthController::class, 'profileUpdate'])->middleware('auth:api')->name('profileUpdate');
         Route::post('/account/delete', [AuthController::class, 'deleteAccount'])->middleware('auth:api')->name('deleteAccount');
+        Route::post('/send-code', [AuthController::class, 'sendCode'])->name('sendCode');
+        Route::post('/change-phone', [AuthController::class, 'changePhone'])->middleware('auth:api')->name('changePhone');
+        Route::post('/reset-password', [AuthController::class, 'resetPassword'])->middleware('auth:api')->name('resetPassword');
+        Route::post('/verify-otp', [AuthController::class, 'verifyOtp'])->name('verifyOtp');
     });
     Route::get('/config', [ConfigController::class, 'config'])->name('config');
     Route::get('/home', [ConfigController::class, 'homePage'])->name('homePage');

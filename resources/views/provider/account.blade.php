@@ -31,7 +31,7 @@
                                             <div class="col-md-6">
                                                 <div
                                                     class="form-group
-                                                                                                        {{ $errors->has('name') ? ' has-danger' : '' }}">
+                                                                                                            {{ $errors->has('name') ? ' has-danger' : '' }}">
                                                     <label for="name">{{ __('message.Name') }}</label>
                                                     <input type="text" class="form-control" id="name" name="name"
                                                         value="{{ auth('web')->user()->name }}" required>
@@ -58,7 +58,7 @@
                                                 <div class="form-group {{ $errors->has('phone') ? ' has-danger' : '' }}">
                                                     <label for="phone">{{ __('message.Phone') }}</label>
                                                     <input type="text" class="form-control" id="phone" name="phone"
-                                                        value="{{ auth('web')->user()->phone }}" required>
+                                                        value="{{ auth('web')->user()->phone }}" disabled>
                                                 </div>
                                                 @if ($errors->has('phone'))
                                                     <span class="invalid-feedback" style="display: block;" role="alert">
