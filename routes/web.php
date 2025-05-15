@@ -135,10 +135,10 @@ Route::group(['middleware' => 'WebLang'], function () {
     Route::post('/password-resend-code', [AuthController::class, 'passwordResendCode'])->name('passwordResendCode');
     Route::post('/new-password', [AuthController::class, 'newPasswordStore'])->name('newPasswordStore');
     Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
-        Route::get('/change-phone', [ChangePhone::class, 'index'])->name("newPhone");
-        Route::post('/change-phone', [ChangePhone::class, 'getNewPhone'])->name('getNewPhone');
-        Route::get('/verify', [ChangePhone::class, 'verify'])->name('verify');
-        Route::post('/verify', [ChangePhone::class, 'verifyCode'])->name('verifyCode');
-        Route::post('/resend-code', [ChangePhone::class, 'resendCode'])->name('resendCode');
+        Route::get('/change-phone', [ChangePhone::class, 'index'])->name("newPhone")->middleware('auth:web');
+        Route::post('/change-phone', [ChangePhone::class, 'getNewPhone'])->name('getNewPhone')->middleware('auth:web');
+        Route::get('/verify', [ChangePhone::class, 'verify'])->name('verify')->middleware('auth:web');
+        Route::post('/verify', [ChangePhone::class, 'verifyCode'])->name('verifyCode')->middleware('auth:web');
+        Route::post('/resend-code', [ChangePhone::class, 'resendCode'])->name('resendCode')->middleware('auth:web');
     });
 });
